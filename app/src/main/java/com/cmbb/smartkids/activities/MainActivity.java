@@ -1,8 +1,14 @@
 package com.cmbb.smartkids.activities;
 
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AccountsException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,18 +17,18 @@ import android.widget.Button;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
+import com.cmbb.smartkids.BuildConfig;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.account.ApiKeyProvider;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.location.BaiduLocation;
 import com.cmbb.smartkids.network.OkHttp;
-import com.cmbb.smartkids.tools.TDevice;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.umeng.update.UmengUpdateAgent;
 
 import java.io.IOException;
 
@@ -30,9 +36,11 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    BaiduLocation mBaiduLocation;
+    protected BaiduLocation mBaiduLocation;
+    protected ApiKeyProvider mApiKeyProvider;
 
-    Button btn_waitdialog, btn_waitdialog_with_cancle, btn_exit, btn_toast, btn_toast_normal, btn_asyncget;
+    protected Button btn_waitdialog, btn_waitdialog_with_cancle, btn_exit, btn_toast, btn_toast_normal,
+            btn_asyncget;
 
     @Override
     public int getLayoutId() {
@@ -46,8 +54,32 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
 
     @Override
     protected void init() {
+        checkAuth();
         initView();
         initLocation();
+    }
+
+    private void checkAuth() {
+
+        mApiKeyProvider = new ApiKeyProvider(AccountManager.get(this));
+
+        new Thread() {
+            @Override
+            public void run() {
+                String token = null;
+                try {
+                    Log.i(TAG, "===========================================");
+                    token = mApiKeyProvider.getAuthKey(MainActivity.this);
+                    Log.i(TAG, "token = " + token);
+                    Log.i(TAG, "===========================================");
+                } catch (AccountsException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
     }
 
     private void initLocation() {

@@ -3,8 +3,10 @@ package com.cmbb.smartkids.account;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
 import android.accounts.AccountManager;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
@@ -98,7 +100,6 @@ public class AuthenticatorActivity extends ActionBarActivity {
 
         onAuthenticationResult();
         if (BuildConfig.DEBUG) {
-            Log.i(TAG, "Url ==");
             Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
                     password));
         }
@@ -112,6 +113,7 @@ public class AuthenticatorActivity extends ActionBarActivity {
         }
 
     }
+
 
     private void finishConfirmCredentials(boolean result) {
         final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
@@ -127,6 +129,7 @@ public class AuthenticatorActivity extends ActionBarActivity {
         final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
+            //设置自动同步
         } else {
             accountManager.setPassword(account, password);
         }

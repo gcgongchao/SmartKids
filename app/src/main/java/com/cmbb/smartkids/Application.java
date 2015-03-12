@@ -19,7 +19,6 @@ public class Application extends BaseApplication {
 
     @Override
     protected void init() {
-        Log.i(TAG, "22---------------");
         initImager(context());
         UmengUpdateAgent.setUpdateOnlyWifi(false);
         UmengUpdateAgent.update(this);
