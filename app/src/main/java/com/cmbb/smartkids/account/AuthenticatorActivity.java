@@ -99,17 +99,20 @@ public class AuthenticatorActivity extends ActionBarActivity {
         token = user.getToken();
 
         onAuthenticationResult();
-        if (BuildConfig.DEBUG) {
-            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
-                    password));
-        }
+//        if (BuildConfig.DEBUG) {
+//            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
+//                    password));
+//        }
     }
 
     private void onAuthenticationResult() {
         if (!confirmCredentials) {
             finishLogin();
+            Log.i(TAG, "finishLogin");
         } else {
             finishConfirmCredentials(true);
+            Log.i(TAG, "finishConfirmCredentials");
+
         }
 
     }
@@ -126,19 +129,23 @@ public class AuthenticatorActivity extends ActionBarActivity {
     }
 
     private void finishLogin() {
+        authToken = token;
         final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
+            Log.i(TAG, "addAccountExplicitly = " + authToken);
+            accountManager.setAuthToken(account, Constants.Auth.AUTHTOKEN_TYPE, authToken);
+            Log.i(TAG, "addAccountExplicitly");
             //设置自动同步
         } else {
             accountManager.setPassword(account, password);
+            Log.i(TAG, "setPassword");
         }
-
-        authToken = token;
         final Intent intent = new Intent();
         intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, email);
         intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, Constants.Auth.SMARTKIDS_ACCOUNT_NAME);
         if (authTokenType != null && authTokenType.equals(Constants.Auth.AUTHTOKEN_TYPE)) {
+            Log.i(TAG, "AccountManager.KEY_AUTHTOKEN = "+authToken);
             intent.putExtra(AccountManager.KEY_AUTHTOKEN, authToken);
         }
         setAccountAuthenticatorResult(intent.getExtras());

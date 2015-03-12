@@ -68,7 +68,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
             return errBundle;
         }
         // cache获取
-
         final String authToken = AccountManager.get(mContext).peekAuthToken
                 (account, authTokenType);
         System.out.println("authTokenType = " + authTokenType);
@@ -87,6 +86,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
         final Bundle serverBundle = new Bundle();
         serverBundle.putParcelable(AccountManager.KEY_INTENT, intent);
+        System.out.println("新的登录");
         return serverBundle;
 
     }

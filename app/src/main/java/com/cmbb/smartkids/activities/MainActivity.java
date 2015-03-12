@@ -4,6 +4,8 @@ import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AccountsException;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,7 +107,23 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_waitdialog:
-                showWaitDialog("MEIZU");
+                //showWaitDialog("MEIZU");
+                AccountManager accountManager = AccountManager.get(this);
+                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE, Constants.Auth.AUTHTOKEN_TYPE, new String[0], this, null,null, new AccountManagerCallback<Bundle>() {
+                    @Override
+                    public void run(AccountManagerFuture<Bundle> future) {
+                        try {
+                            String result = future.getResult().getString(AccountManager.KEY_AUTHTOKEN);
+                            Log.i(TAG, "result = " + result);
+                        } catch (OperationCanceledException e) {
+                            e.printStackTrace();e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (AuthenticatorException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, null);
                 break;
 
             case R.id.btn_waitdialog_with_cancle:
