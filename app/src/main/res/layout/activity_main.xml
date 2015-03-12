@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_waitdialog"
+        android:text="ShowWaitDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/btn_waitdialog"
+        android:id="@+id/btn_waitdialog_with_cancle"
+        android:text="ShowCWaitDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/btn_waitdialog_with_cancle"
+        android:id="@+id/btn_exit"
+        android:text="EXIT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/btn_exit"
+        android:id="@+id/btn_toast"
+        android:text="Toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/btn_toast"
+        android:id="@+id/btn_toast_normal"
+        android:text="Toast Normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+    <Button
+        android:layout_below="@id/btn_toast_normal"
+        android:id="@+id/btn_asyncget"
+        android:text="AsyncGet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
