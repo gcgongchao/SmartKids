@@ -20,7 +20,7 @@ public class SyncService extends Service {
         super.onCreate();
         Log.i(TAG, "Sync Service Start");
         synchronized (sSyncAdapterLock) {
-            if (sSyncAdapter != null) {
+            if (sSyncAdapter == null) {
                 sSyncAdapter = new SyncAdapter(getApplicationContext(), true);
             }
         }

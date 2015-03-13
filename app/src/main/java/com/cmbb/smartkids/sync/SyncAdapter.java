@@ -54,12 +54,12 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
      * Network connection timeout, in milliseconds.
      * 超时时间
      */
-    private static final int NET_CONNECT_TIMEOUT_MILLIS = 15000;  // 15 seconds
+    private static final int NET_CONNECT_TIMEOUT_MILLIS = 35000;  // 15 seconds
 
     /**
      * Network read timeout, in milliseconds.
      */
-    private static final int NET_READ_TIMEOUT_MILLIS = 10000;  // 10 seconds
+    private static final int NET_READ_TIMEOUT_MILLIS = 30000;  // 10 seconds
 
     /**
      * Content resolver, for performing database operations.
@@ -120,6 +120,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
     public void onPerformSync(Account account, Bundle extras, String authority,
                               ContentProviderClient provider, SyncResult syncResult) {
         Log.i(TAG, "Beginning network synchronization");
+        System.out.println("Beginning network synchronization");
         try {
             final URL location = new URL(FEED_URL);
             InputStream stream = null;
