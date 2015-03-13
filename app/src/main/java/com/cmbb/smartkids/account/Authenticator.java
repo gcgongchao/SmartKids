@@ -60,7 +60,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "getToken");
         }
-        System.out.println("getToken");
         // 错误的AuthTokenType
         if (!authTokenType.equals(Constants.Auth.AUTHTOKEN_TYPE)) {
             final Bundle errBundle = new Bundle();
@@ -70,8 +69,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
         // cache获取
         final String authToken = AccountManager.get(mContext).peekAuthToken
                 (account, authTokenType);
-        System.out.println("authTokenType = " + authTokenType);
-        System.out.println("authToken = " + authToken);
         if (!TextUtils.isEmpty(authToken)) {
             final Bundle bundle = new Bundle();
             bundle.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
@@ -86,7 +83,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
         intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
         final Bundle serverBundle = new Bundle();
         serverBundle.putParcelable(AccountManager.KEY_INTENT, intent);
-        System.out.println("新的登录");
         return serverBundle;
 
     }

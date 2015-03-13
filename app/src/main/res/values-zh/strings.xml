@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="authenticator_aty_label">认证登录</string>
+    <string name="action_logout">登出</string>
+    <string name="app_name">萌宝派</string>
+    <string name="loading">加载中...</string>
+    <string name="tb_munion_tip_download_prefix">正在下载:</string>
+    <string name="umeng_common_icon">图标</string>
+    <string name="hello_world">你好，世界！</string>
+    <string name="UMUpdateCheck">2.6.0.20150211</string>
 </resources>

@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.cmbb.smartkids.BuildConfig;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.FeedContract;
 import com.cmbb.smartkids.tools.logger.Log;
 
 /**
@@ -22,6 +23,8 @@ import com.cmbb.smartkids.tools.logger.Log;
 public class AuthenticatorActivity extends ActionBarActivity {
 
     private static final String TAG = AuthenticatorActivity.class.getSimpleName();
+
+    private static final long SYNC_FREQUENCY = 60 * 60;  // 1 hour (in seconds)
 
     //param_confirm_credentials
     public static final String PARAM_CONFIRM_CREDENTIALS = "confirmCredentials";
@@ -99,10 +102,10 @@ public class AuthenticatorActivity extends ActionBarActivity {
         token = user.getToken();
 
         onAuthenticationResult();
-//        if (BuildConfig.DEBUG) {
-//            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
-//                    password));
-//        }
+        if (BuildConfig.DEBUG) {
+            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
+                    password));
+        }
     }
 
     private void onAuthenticationResult() {
@@ -112,11 +115,9 @@ public class AuthenticatorActivity extends ActionBarActivity {
         } else {
             finishConfirmCredentials(true);
             Log.i(TAG, "finishConfirmCredentials");
-
         }
 
     }
-
 
     private void finishConfirmCredentials(boolean result) {
         final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
@@ -133,19 +134,24 @@ public class AuthenticatorActivity extends ActionBarActivity {
         final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
-            Log.i(TAG, "addAccountExplicitly = " + authToken);
             accountManager.setAuthToken(account, Constants.Auth.AUTHTOKEN_TYPE, authToken);
-            Log.i(TAG, "addAccountExplicitly");
             //设置自动同步
+            // Inform the system that this account supports sync
+            ContentResolver.setIsSyncable(account, FeedContract.CONTENT_AUTHORITY, 1);
+            // Inform the system that this account is eligible for auto sync when the network is up
+            ContentResolver.setSyncAutomatically(account, FeedContract.CONTENT_AUTHORITY, true);
+            // Recommend a schedule for automatic synchronization. The system may modify this based
+            // on other scheduled syncs and network utilization.
+            ContentResolver.addPeriodicSync(account, FeedContract.CONTENT_AUTHORITY, new Bundle(), SYNC_FREQUENCY);
+            // 设置Sharepreference flag
+
         } else {
             accountManager.setPassword(account, password);
-            Log.i(TAG, "setPassword");
         }
         final Intent intent = new Intent();
         intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, email);
         intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, Constants.Auth.SMARTKIDS_ACCOUNT_NAME);
         if (authTokenType != null && authTokenType.equals(Constants.Auth.AUTHTOKEN_TYPE)) {
-            Log.i(TAG, "AccountManager.KEY_AUTHTOKEN = "+authToken);
             intent.putExtra(AccountManager.KEY_AUTHTOKEN, authToken);
         }
         setAccountAuthenticatorResult(intent.getExtras());

@@ -9,27 +9,21 @@
                 tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_waitdialog"
-        android:text="ShowWaitDialog"
+        android:id="@+id/btn_authtoken"
+        android:text="Get AuthToken"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:layout_below="@id/btn_waitdialog"
+        android:layout_below="@id/btn_authtoken"
         android:id="@+id/btn_waitdialog_with_cancle"
-        android:text="ShowCWaitDialog"
+        android:text="WaitDialog with Cancle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 
     <Button
         android:layout_below="@id/btn_waitdialog_with_cancle"
-        android:id="@+id/btn_exit"
-        android:text="EXIT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:layout_below="@id/btn_exit"
         android:id="@+id/btn_toast"
         android:text="Toast"
         android:layout_width="match_parent"
@@ -38,16 +32,29 @@
     <Button
         android:layout_below="@id/btn_toast"
         android:id="@+id/btn_toast_normal"
-        android:text="Toast Normal"
+        android:text="Get Location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 
 
     <Button
         android:layout_below="@id/btn_toast_normal"
         android:id="@+id/btn_asyncget"
         android:text="AsyncGet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_below="@id/btn_asyncget"
+        android:id="@+id/btn_triggerrefresh"
+        android:text="TriggerRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:text="EXIT"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

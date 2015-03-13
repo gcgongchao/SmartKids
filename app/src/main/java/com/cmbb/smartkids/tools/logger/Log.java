@@ -1,5 +1,7 @@
 package com.cmbb.smartkids.tools.logger;
 
+import com.cmbb.smartkids.BuildConfig;
+
 public class Log {
     public static final int NONE = -1;
     public static final int VERBOSE = android.util.Log.VERBOSE;
@@ -20,7 +22,7 @@ public class Log {
     }
 
     public static void println(int priority, String tag, String msg, Throwable tr) {
-        if (mLogNode != null) {
+        if (mLogNode != null && BuildConfig.DEBUG) {
             mLogNode.println(priority, tag, msg, tr);
         }
     }

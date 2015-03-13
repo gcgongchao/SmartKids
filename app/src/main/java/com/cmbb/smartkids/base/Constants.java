@@ -26,5 +26,14 @@ public final class Constants {
         public static final String AUTHTOKEN_TYPE = SMARTKIDS_ACCOUNT_TYPE;
     }
 
+    public static final class Sync{
+        private Sync() {
+
+        }
+
+        public static final String FEED_URL = "http://android-developers.blogspot.com/atom.xml";
+        public static final String ACCOUNT_TYPE  = "com.cmbb.smartkids.syncadapter.account";
+    }
+
     public static final String INTENT_ACTION_EXIT_APP = "com.dmbi.childrenclub.intent.action.exitapp";
 }

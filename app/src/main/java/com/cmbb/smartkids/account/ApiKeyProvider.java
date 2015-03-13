@@ -17,18 +17,12 @@ import java.io.IOException;
  * Created by N.Sun
  */
 public class ApiKeyProvider {
-    private AccountManager accountManager;
 
-    public ApiKeyProvider(AccountManager accountManager) {
-        this.accountManager = accountManager;
-    }
-
-    public String getAuthKey(final Activity activity) throws
-            AuthenticatorException, OperationCanceledException, IOException {
-        final AccountManagerFuture<Bundle> accountManagerFuture = accountManager
+    public static void getAuthKey(final Activity activity, final AccountManagerCallback callback) {
+        final AccountManagerFuture<Bundle> accountManagerFuture = AccountManager.get(activity)
                 .getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE,
                         Constants.Auth.AUTHTOKEN_TYPE, new String[0], activity, null, null,
-                        null, null);
-        return accountManagerFuture.getResult().getString(AccountManager.KEY_AUTHTOKEN);
+                        callback, null);
+
     }
 }

@@ -20,20 +20,22 @@ public class LogoutService {
 
     private final static String TAG = LogoutService.class.getSimpleName();
 
-    protected final Context mContext;
-
-    public LogoutService(final Context mContext) {
-        this.mContext = mContext;
-    }
-
-    public Boolean logout() throws AuthenticatorException, OperationCanceledException, IOException {
+    public static Boolean logout(Context mContext){
         final AccountManager accountManagerWithContext = AccountManager.get(mContext);
         if (accountManagerWithContext != null) {
             final Account[] accounts = accountManagerWithContext.getAccountsByType(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
             if (accounts.length > 0) {
                 final AccountManagerFuture<Boolean> removeAccountFuture =
                         accountManagerWithContext.removeAccount(accounts[0], null, null);
-                return removeAccountFuture.getResult();
+                try {
+                    return removeAccountFuture.getResult();
+                } catch (OperationCanceledException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (AuthenticatorException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             if (BuildConfig.DEBUG) {

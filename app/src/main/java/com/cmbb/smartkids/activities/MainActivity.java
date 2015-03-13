@@ -3,14 +3,12 @@ package com.cmbb.smartkids.activities;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
-import android.accounts.AccountsException;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +17,12 @@ import android.widget.Button;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.cmbb.smartkids.BuildConfig;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.account.ApiKeyProvider;
+import com.cmbb.smartkids.account.LogoutService;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.db.FeedContract;
 import com.cmbb.smartkids.location.BaiduLocation;
 import com.cmbb.smartkids.network.OkHttp;
 import com.cmbb.smartkids.tools.logger.Log;
@@ -39,10 +38,9 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     protected BaiduLocation mBaiduLocation;
-    protected ApiKeyProvider mApiKeyProvider;
 
-    protected Button btn_waitdialog, btn_waitdialog_with_cancle, btn_exit, btn_toast, btn_toast_normal,
-            btn_asyncget;
+    protected Button btn_authtoken, btn_waitdialog_with_cancle, btn_exit, btn_toast, btn_toast_normal,
+            btn_asyncget, btn_triggerrefresh;
 
     @Override
     public int getLayoutId() {
@@ -62,25 +60,20 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
     }
 
     private void checkAuth() {
-
-        mApiKeyProvider = new ApiKeyProvider(AccountManager.get(this));
-
-        new Thread() {
+        ApiKeyProvider.getAuthKey(this, new AccountManagerCallback<Bundle>() {
             @Override
-            public void run() {
-                String token = null;
+            public void run(AccountManagerFuture<Bundle> future) {
                 try {
-                    Log.i(TAG, "===========================================");
-                    token = mApiKeyProvider.getAuthKey(MainActivity.this);
-                    Log.i(TAG, "token = " + token);
-                    Log.i(TAG, "===========================================");
-                } catch (AccountsException e) {
+                    Log.i(TAG, future.getResult().getString(AccountManager.KEY_AUTHTOKEN));
+                } catch (OperationCanceledException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (AuthenticatorException e) {
+                    e.printStackTrace();
                 }
             }
-        }.start();
+        });
 
     }
 
@@ -89,8 +82,8 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
     }
 
     private void initView() {
-        btn_waitdialog = (Button) findViewById(R.id.btn_waitdialog);
-        btn_waitdialog.setOnClickListener(this);
+        btn_authtoken = (Button) findViewById(R.id.btn_authtoken);
+        btn_authtoken.setOnClickListener(this);
         btn_waitdialog_with_cancle = (Button) findViewById(R.id.btn_waitdialog_with_cancle);
         btn_waitdialog_with_cancle.setOnClickListener(this);
         btn_exit = (Button) findViewById(R.id.btn_exit);
@@ -101,22 +94,25 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
         btn_toast_normal.setOnClickListener(this);
         btn_asyncget = (Button) findViewById(R.id.btn_asyncget);
         btn_asyncget.setOnClickListener(this);
+        btn_triggerrefresh = (Button) findViewById(R.id.btn_triggerrefresh);
+        btn_triggerrefresh.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_waitdialog:
-                //showWaitDialog("MEIZU");
+            case R.id.btn_authtoken:
                 AccountManager accountManager = AccountManager.get(this);
-                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE, Constants.Auth.AUTHTOKEN_TYPE, new String[0], this, null,null, new AccountManagerCallback<Bundle>() {
+                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE, Constants.Auth.AUTHTOKEN_TYPE, new String[0], this, null, null, new AccountManagerCallback<Bundle>() {
                     @Override
                     public void run(AccountManagerFuture<Bundle> future) {
                         try {
                             String result = future.getResult().getString(AccountManager.KEY_AUTHTOKEN);
                             Log.i(TAG, "result = " + result);
                         } catch (OperationCanceledException e) {
-                            e.printStackTrace();e.printStackTrace();
+                            e.printStackTrace();
+                            e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (AuthenticatorException e) {
@@ -176,6 +172,14 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
                     e.printStackTrace();
                 }
                 break;
+            case R.id.btn_triggerrefresh:
+                Bundle bundle = new Bundle();
+                // Disable sync backoff and ignore sync preferences. In other words...perform sync NOW!
+                bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+                bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                ContentResolver.requestSync(AccountManager.get(this).getAccounts()[0],
+                        FeedContract.CONTENT_AUTHORITY, bundle);
+                break;
         }
         super.onClick(v);
     }
@@ -188,10 +192,10 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                Log.i(TAG, "Logout = " + LogoutService.logout(this));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
