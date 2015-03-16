@@ -135,14 +135,14 @@ public class AuthenticatorActivity extends ActionBarActivity {
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
             accountManager.setAuthToken(account, Constants.Auth.AUTHTOKEN_TYPE, authToken);
-            //设置自动同步
+            //设置自动同步(目前关闭)
             // Inform the system that this account supports sync
-            ContentResolver.setIsSyncable(account, FeedContract.CONTENT_AUTHORITY, 1);
+            //ContentResolver.setIsSyncable(account, FeedContract.CONTENT_AUTHORITY, 1);
             // Inform the system that this account is eligible for auto sync when the network is up
-            ContentResolver.setSyncAutomatically(account, FeedContract.CONTENT_AUTHORITY, true);
+            //ContentResolver.setSyncAutomatically(account, FeedContract.CONTENT_AUTHORITY, true);
             // Recommend a schedule for automatic synchronization. The system may modify this based
             // on other scheduled syncs and network utilization.
-            ContentResolver.addPeriodicSync(account, FeedContract.CONTENT_AUTHORITY, new Bundle(), SYNC_FREQUENCY);
+            //ContentResolver.addPeriodicSync(account, FeedContract.CONTENT_AUTHORITY,new Bundle(), SYNC_FREQUENCY);
             // 设置Sharepreference flag
 
         } else {

@@ -36,12 +36,10 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG, "133---------------");
         sContext = getApplicationContext();
         int pid = android.os.Process.myPid();
         String processAppName = ApkInfoTools.getAppName(context(), pid);
         if (processAppName == null || processAppName.equals("")) return;
-        Log.i(TAG, "11---------------");
         initLog();
         init();
     }

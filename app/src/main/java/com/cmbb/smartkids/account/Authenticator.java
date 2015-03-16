@@ -77,6 +77,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
             return bundle;
         }
         // 服务器获取
+        // 登录让服务器恢复seesionID
         final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
         intent.putExtra(AuthenticatorActivity.PARAM_USERNAME, account.name);
         intent.putExtra(AuthenticatorActivity.PARAM_AUTHTOKEN_TYPE, authTokenType);
@@ -84,7 +85,6 @@ public class Authenticator extends AbstractAccountAuthenticator {
         final Bundle serverBundle = new Bundle();
         serverBundle.putParcelable(AccountManager.KEY_INTENT, intent);
         return serverBundle;
-
     }
 
     @Override

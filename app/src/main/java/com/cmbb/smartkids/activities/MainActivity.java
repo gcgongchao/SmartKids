@@ -96,7 +96,6 @@ public class MainActivity extends BaseActivity implements BDLocationListener {
         btn_asyncget.setOnClickListener(this);
         btn_triggerrefresh = (Button) findViewById(R.id.btn_triggerrefresh);
         btn_triggerrefresh.setOnClickListener(this);
-
     }
 
     @Override

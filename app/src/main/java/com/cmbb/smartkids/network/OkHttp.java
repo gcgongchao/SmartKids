@@ -11,6 +11,8 @@ import com.squareup.okhttp.Response;
 
 
 import java.io.IOException;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,11 +28,15 @@ public class OkHttp {
         mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
         mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
         mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
-        try {
-            mOkHttpClient.setCache(new Cache(Application.context().getExternalCacheDir(), cacheSize));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mOkHttpClient.setCookieHandler(new CookieManager(
+                new PersistentCookieStore(Application.context()),
+                CookiePolicy.ACCEPT_ALL));
+
+//        try {
+//            mOkHttpClient.setCache(new Cache(Application.context().getExternalCacheDir(), cacheSize));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**

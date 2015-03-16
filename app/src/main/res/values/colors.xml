@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent_gray">#CFDDDDDD</color>
+    <color name="transparent_black">#50000000</color>
+    <color name="transparent_black_2">#A0000000</color>
+    <color name="color_CCCCCC">#CCCCCC</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_00CD00">#00CD00</color>
+    <color name="color_1CA2F7">#1CA2F7</color>
+    <color name="color_C3C3C3">#C3C3C3</color>
+    <color name="color_F2F9FF">#F2F9FF</color>
+    <color name="color_5E7D9A">#5E7D9A</color>
+    <color name="color_0005FF">#0005FF</color>
+    
+    <!-- 重新定义 -->
+   	<color name="color_main_black">#FF4B4B4B</color>
+    <color name="color_transparent_gray">#CFDDDDDD</color>
+    <color name="color_register_bg">#F2F9FF</color>
+    <color name="color_stroke">#CCCCCC</color>
+    <color name="color_black">#000000</color>
+    <color name="color_gray">#808080</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_white2">#CCFFFFFF</color>
+    <color name="color_main_bg">#E6F2FAFF</color>
+    <color name="color_dig_gray">#696969</color>
+    <color name="color_dark_gray">#A9A9A9</color>
+    <color name="color_hint">#D3D3D3</color>
+    <color name="color_green">#ED73CC36</color>
+    <color name="color_blue">#ED1AA0F5</color>
+    <color name="color_pink">#FFB3B3B3</color>
+    <color name="color_red">#FF0000</color>
+    <color name="color_dark_red">#FF00CC33</color>
+    <color name="color_transparent_black">#AF000000</color>
+    
+    <color name="color_type_one">#EFBA5E</color>
+    <color name="color_type_two">#A4D270</color>
+    <color name="color_type_three">#89CCAD</color>
+    <color name="color_title">#ED1AA1F5</color>
+    <color name="color_reply_context_one">#0D0000FF</color>
+    <color name="color_body_line">#CCCCCC</color>
+    <color name="color_permissions_one_bg">#FF0000</color>
+    <color name="color_permissions_two_bg">#0000FF</color>
+    <color name="color_permissions_other_bg">#FF00CC33</color>
+    <color name="color_transparent">#00FFFFFF</color>
+    <color name="color_hu_zhu_content_bg_one">#FFF2F2</color>
+    <color name="color_hu_zhu_content_bg_two">#F2FFF2</color>
+</resources>
