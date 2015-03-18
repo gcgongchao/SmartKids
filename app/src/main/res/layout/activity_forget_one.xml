@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:clickable="false"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/babypai_logo"/>
+
+    <LinearLayout
+        android:id="@+id/view_login_activity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@drawable/ui_shape_background_one"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_forget_phone"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/tel_number"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:paddingBottom="@dimen/padding_8"
+                android:paddingLeft="@dimen/padding_6"
+                android:paddingRight="@dimen/padding_6"
+                android:paddingTop="@dimen/padding_8"
+                android:singleLine="true"
+                android:textColor="@color/color_main_black"
+                android:textColorHint="@color/color_hint"
+                android:textSize="@dimen/txt_size_17"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_6"
+                android:layout_marginRight="@dimen/margin_6"
+                android:contentDescription="@string/description"
+                android:src="@drawable/error"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/btn_forget_next"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp "
+            android:background="@drawable/selector_ui_shape_background_pressed_two"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@drawable/selector_text_color_pressed_white_to_black"
+            android:textSize="@dimen/txt_size_17"/>
+
+
+    </LinearLayout>
+</LinearLayout>
+

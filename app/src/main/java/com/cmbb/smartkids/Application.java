@@ -3,7 +3,6 @@ package com.cmbb.smartkids;
 import android.content.SharedPreferences;
 
 import com.cmbb.smartkids.base.BaseApplication;
-import com.cmbb.smartkids.tools.logger.Log;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;

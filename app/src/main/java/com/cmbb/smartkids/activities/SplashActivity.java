@@ -1,12 +1,16 @@
 package com.cmbb.smartkids.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activities.login.LoginActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by N.Sun
@@ -31,11 +35,32 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        initView();
 
+        initView();
+        initTask();
+        initLogin();
+    }
+
+
+
+    private void initLogin() {
+    }
+
+    private void initTask() {
+        final Intent intent = new Intent(this, LoginActivity.class);
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                startActivity(intent);
+                finish();
+            }
+        };
+        timer.schedule(timerTask, 3000);
     }
 
     private void initView() {
+
         iv_splash_bg = (ImageView) findViewById(R.id.iv_splash_bg);
         drawBgs = new int[]{R.drawable.splash_backgroud_one, R.drawable.splash_backgroud_two, R.drawable.splash_backgroud_three,
                 R.drawable.splash_backgroud_four, R.drawable.splash_backgroud_five, R.drawable.splash_backgroud_six, R.drawable.splash_backgroud_seven};

@@ -4,6 +4,7 @@ package com.cmbb.smartkids.account;
  * Created by N.Sun
  */
 public class User {
+
     protected String username;
     protected String phone;
     protected String token;

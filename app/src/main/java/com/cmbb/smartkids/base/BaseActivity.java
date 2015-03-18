@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,10 +49,22 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         BaseApplication.saveDisplaySize(this);
+        initActionBar();
         init();
         init(savedInstanceState);
         initExit();
         initShare();
+    }
+    protected void initActionBar() {
+        try{
+            ActionBar mActionBar = getSupportActionBar();
+            mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(false);
+            mActionBar.setDisplayShowTitleEnabled(true);
+        }catch (NullPointerException e){
+
+        }
     }
 
     private void initExit() {

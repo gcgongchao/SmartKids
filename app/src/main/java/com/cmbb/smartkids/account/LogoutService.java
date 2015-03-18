@@ -20,7 +20,7 @@ public class LogoutService {
 
     private final static String TAG = LogoutService.class.getSimpleName();
 
-    public static Boolean logout(Context mContext){
+    public static Boolean logout(Context mContext) {
         final AccountManager accountManagerWithContext = AccountManager.get(mContext);
         if (accountManagerWithContext != null) {
             final Account[] accounts = accountManagerWithContext.getAccountsByType(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);

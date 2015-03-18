@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/theme_color">
+
+        <TextView
+            android:id="@+id/iv_bar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/ic_ab_back_holo_dark_am"
+            android:textSize="@dimen/txt_size_16"
+            android:text="返回"
+            />
+
+        <TextView
+            android:id="@+id/tv_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_size_18"/>
+
+        <TextView
+            android:id="@+id/iv_null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/ic_ab_back_holo_light_am"
+            android:textSize="@dimen/txt_size_16"
+            android:text="返回"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
