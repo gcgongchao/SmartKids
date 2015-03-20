@@ -3,11 +3,11 @@ package com.cmbb.smartkids.account;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Contacts;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,7 +20,7 @@ import com.cmbb.smartkids.tools.logger.Log;
 /**
  * Created by N.Sun
  */
-public class AuthenticatorActivity extends ActionBarActivity {
+public class AuthenticatorActivity extends Activity {
 
     private static final String TAG = AuthenticatorActivity.class.getSimpleName();
 

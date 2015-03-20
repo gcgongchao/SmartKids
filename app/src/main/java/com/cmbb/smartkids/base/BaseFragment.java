@@ -1,8 +1,8 @@
 package com.cmbb.smartkids.base;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.ui.DialogControl;
@@ -36,56 +36,56 @@ public class BaseFragment extends Fragment {
     }
 
     public void showToast(int message) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message);
         }
     }
 
     public void showToast(String message) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message);
         }
     }
 
     public void showToast(int message, int icon) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, icon);
         }
     }
 
     public void showToast(String message, int icon) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, icon);
         }
     }
 
     public void showToastShort(int message) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToastShort(message);
         }
     }
 
     public void showToastShort(String message) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToastShort(message);
         }
     }
 
     public void showToastShort(int message, Object... args) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToastShort(message, args);
         }
     }
 
     public void showToast(int message, int duration, int icon) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, duration, icon);
         }
@@ -93,7 +93,7 @@ public class BaseFragment extends Fragment {
 
     public void showToast(int message, int duration, int icon,
                           int gravity) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, duration, icon, gravity);
         }
@@ -101,7 +101,7 @@ public class BaseFragment extends Fragment {
 
     public void showToast(int message, int duration, int icon,
                           int gravity, Object... args) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, duration, icon, gravity, args);
         }
@@ -109,28 +109,28 @@ public class BaseFragment extends Fragment {
 
     public void showToast(String message, int duration, int icon,
                           int gravity) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showToast(message, duration, icon, gravity);
         }
     }
 
     public void showPinterestToast(int msgResid, int icon, int gravity) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showPinterestToast(msgResid, icon, gravity);
         }
     }
 
     public void showPinterestToast(String message, int icon, int gravity) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof ToastControl) {
             ((ToastControl) activity).showPinterestToast(message, icon, gravity);
         }
     }
 
     protected void hideWaitDialog() {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof DialogControl) {
             ((DialogControl) activity).hideWaitDialog();
         }
@@ -141,7 +141,7 @@ public class BaseFragment extends Fragment {
     }
 
     protected WaitDialog showWaitDialog(int resid) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof DialogControl) {
             return ((DialogControl) activity).showWaitDialog(resid);
         }
@@ -149,7 +149,7 @@ public class BaseFragment extends Fragment {
     }
 
     protected WaitDialog showWaitDialog(String messge) {
-        FragmentActivity activity = getActivity();
+        Activity activity = getActivity();
         if (activity instanceof DialogControl) {
             return ((DialogControl) activity).showWaitDialog(messge);
         }

@@ -1,96 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Smartkids" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="actionBarItemBackground">@drawable/selectable_background_smartkids</item>
-        <item name="popupMenuStyle">@style/PopupMenu.Smartkids</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Smartkids</item>
-        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Smartkids</item>
-        <item name="actionDropDownStyle">@style/DropDownNav.Smartkids</item>
-        <item name="actionBarStyle">@style/ActionBar.Solid.Smartkids</item>
-        <item name="actionModeBackground">@drawable/cab_background_top_smartkids</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_smartkids</item>
-        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Smartkids</item>
 
-        <!-- Light.DarkActionBar specific -->
-        <item name="actionBarWidgetTheme">@style/Theme.Smartkids.Widget</item>
+    <!-- Base application theme. -->
+    <style name="Theme.Smartkids" parent="AppTheme.Base">
+    </style>
 
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_smartkids
-        </item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Smartkids</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Smartkids</item>
-        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Smartkids</item>
-        <item name="android:actionDropDownStyle">@style/DropDownNav.Smartkids</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Smartkids</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_smartkids</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_smartkids
-        </item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Smartkids
-        </item>
-
-        <!-- Light.DarkActionBar specific -->
-        <item name="android:actionBarWidgetTheme">@style/Theme.Smartkids.Widget</item>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/theme_color</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/theme_color</item>
+        <item name="colorAccent">@color/color_red</item>
+        <!--Window color-->
+        <item name="android:windowBackground">@android:color/white</item>
 
     </style>
 
-    <style name="ActionBar.Solid.Smartkids" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@drawable/ab_solid_smartkids</item>
-        <item name="backgroundStacked">@drawable/ab_stacked_solid_smartkids</item>
-        <item name="backgroundSplit">@drawable/ab_bottom_solid_smartkids</item>
-        <item name="progressBarStyle">@style/ProgressBar.Smartkids</item>
-        <item name="android:background">@drawable/ab_solid_smartkids</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_smartkids</item>
-        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_smartkids</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Smartkids</item>
-    </style>
-
-    <style name="ActionBar.Transparent.Smartkids" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@drawable/ab_transparent_smartkids</item>
-        <item name="progressBarStyle">@style/ProgressBar.Smartkids</item>
-        <item name="android:background">@drawable/ab_transparent_smartkids</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Smartkids</item>
-    </style>
-
-    <style name="PopupMenu.Smartkids" parent="@style/Widget.AppCompat.PopupMenu">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_smartkids</item>
-    </style>
-
-    <style name="DropDownListView.Smartkids" parent="@style/Widget.AppCompat.ListView.DropDown">
-        <item name="android:listSelector">@drawable/selectable_background_smartkids</item>
-    </style>
-
-    <style name="ActionBarTabStyle.Smartkids" parent="@style/Widget.AppCompat.ActionBar.TabView">
-        <item name="android:background">@drawable/tab_indicator_ab_smartkids</item>
-    </style>
-
-    <style name="DropDownNav.Smartkids" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
-        <item name="android:background">@drawable/spinner_background_ab_smartkids</item>
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_smartkids</item>
-        <item name="android:dropDownSelector">@drawable/selectable_background_smartkids</item>
-    </style>
-
-    <style name="ProgressBar.Smartkids" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="android:progressDrawable">@drawable/progress_horizontal_smartkids</item>
-    </style>
-
-    <style name="ActionButton.CloseMode.Smartkids" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
-        <item name="android:background">@drawable/btn_cab_done_smartkids</item>
-    </style>
-
-    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Smartkids.Widget" parent="@style/Theme.AppCompat">
-        <item name="popupMenuStyle">@style/PopupMenu.Smartkids</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Smartkids</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Smartkids</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Smartkids</item>
-    </style>
 
     <style name="WidgetProgressBar">
         <item name="android:indeterminateDrawable">@drawable/progress_medium_holo</item>
     </style>
 
-    <style name="dialog_waiting" parent="Theme.AppCompat.Light.Dialog">
+    <style name="dialog_waiting" parent="android:Theme.Holo.Dialog">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
+
+    <!-- Header2 -->
+    <style name="Header2.Theme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Header.TitleText" parent="android:TextAppearance.Holo">
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:shadowColor">#8000</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">2</item>
+    </style>
+
+    <style name="Header.SubTitleText" parent="Header.TitleText">
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-condensed</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- Header2 -->
+    <!-- NotBoring -->
+    <style name="UserCenter.Theme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle.Transparent</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent" parent="android:Widget.ActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:displayOptions">homeAsUp|showHome|showTitle</item>
+        <item name="android:titleTextStyle">@style/ActionBarStyle.Transparent.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBarStyle.Transparent.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <!-- NotBoring -->
 </resources>

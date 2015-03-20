@@ -1,17 +1,17 @@
 package com.cmbb.smartkids.broadcast;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 
 import com.cmbb.smartkids.tools.logger.Log;
 
 public class ExitBroadcast extends BroadcastReceiver {
     private static final String TAG = ExitBroadcast.class.getSimpleName();
-    FragmentActivity activity = null;
+    Activity activity = null;
 
-    public ExitBroadcast(FragmentActivity activity) {
+    public ExitBroadcast(Activity activity) {
         this.activity = activity;
     }
 

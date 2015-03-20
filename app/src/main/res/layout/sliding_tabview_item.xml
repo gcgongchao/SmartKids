@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/sliding_tabs_item"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:padding="12dp"
+          android:textColor="@drawable/tab_text_color"
+          android:textStyle="bold"
+          android:text="meizu"
+          android:textSize="@dimen/txt_size_18">
+
+</TextView>

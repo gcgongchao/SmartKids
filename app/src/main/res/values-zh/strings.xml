@@ -158,4 +158,6 @@
     <string name="txt_guan_jing">【知名观景区】</string>
     <string name="txt_te_se">【特色亲子间】</string>
     <string name="description">图片描述</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
 </resources>

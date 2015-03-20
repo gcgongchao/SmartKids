@@ -6,6 +6,8 @@
     android:background="@android:color/white"
     android:clickable="false"
     android:orientation="vertical">
+    <!--Toolbar-->
+    <include layout="@layout/custom_toolbar"/>
 
 
     <ImageView

@@ -1,12 +1,14 @@
 package com.cmbb.smartkids.base;
 
+import android.app.ActionBar;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,6 +43,9 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
     // EXIT
     protected BroadcastReceiver existReceiver;
 
+    //声明相关变量
+    protected Toolbar toolbar;
+
     // ContentView
     public abstract int getLayoutId();
 
@@ -49,22 +54,27 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         BaseApplication.saveDisplaySize(this);
-        initActionBar();
+        initToolbar();
         init();
         init(savedInstanceState);
         initExit();
         initShare();
     }
-    protected void initActionBar() {
-        try{
-            ActionBar mActionBar = getSupportActionBar();
-            mActionBar.setHomeButtonEnabled(true);
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setDisplayShowHomeEnabled(false);
-            mActionBar.setDisplayShowTitleEnabled(true);
-        }catch (NullPointerException e){
+
+    protected void initToolbar() {
+        try {
+            toolbar = (Toolbar) findViewById(R.id.tl_custom);
+            toolbar.setTitleTextColor(Color.parseColor("#FFFFFF")); //设置标题颜色
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (NullPointerException e) {
 
         }
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar != null ? toolbar : null;
     }
 
     private void initExit() {
