@@ -17,7 +17,32 @@
         <item name="colorAccent">@color/color_red</item>
         <!--Window color-->
         <item name="android:windowBackground">@android:color/white</item>
+        <!--Indicator-->
+        <item name="vpiCirclePageIndicatorStyle">@style/CustomCirclePageIndicator</item>
+        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
+        <item name="vpiTabPageIndicatorStyle">@style/My.Widget.TabPageIndicator</item>
 
+
+    </style>
+
+
+    <style name="CustomCirclePageIndicator">
+        <item name="fillColor">#6696DE</item>
+        <item name="strokeColor">#6696DE</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="radius">5dp</item>
+        <item name="centered">true</item>
+    </style>
+
+    <style name="My.Widget.TabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:background">@drawable/selector_tab_pager_indicator</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">6dip</item>
+        <item name="android:paddingLeft">0dip</item>
+        <item name="android:paddingRight">0dip</item>
+        <item name="android:paddingBottom">6dip</item>
     </style>
 
 
@@ -69,4 +94,17 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
     <!-- NotBoring -->
+
+    <style name="fragment_tools_case_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/global_padding</item>
+        <item name="android:paddingTop">@dimen/global_padding</item>
+        <item name="android:paddingBottom">@dimen/global_padding</item>
+        <item name="android:paddingRight">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_vertical_margin</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@drawable/selector_text_color_pressed_white_to_gray</item>
+    </style>
 </resources>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:background="@drawable/ui_shape_background_one"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_margin="@dimen/global_padding"
+            android:maxLines="1"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@drawable/selector_text_color_pressed_white_to_gray"
+            android:textStyle="bold"
+            android:text="  宝宝状况分析"
+            />
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:background="@drawable/ui_shape_background_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <RadioButton
+            android:id="@+id/radio_first_aid"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="急救"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_common_disease"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="常见病"
+            android:checked="true"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_pain"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="伤痛"
+            android:button="@null"
+            />
+    </RadioGroup>
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:background="@drawable/ui_shape_background_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <RadioButton
+            android:id="@+id/radio_cold"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:padding="@dimen/global_padding"
+            android:text="感冒"
+            android:checked="true"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_fever"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="发烧"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_diarrhea"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="腹泻"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_anemia"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="贫血"
+            android:button="@null"
+            />
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:background="@drawable/ui_shape_background_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <RadioButton
+            android:id="@+id/radio_breath"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="呼吸"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_allergy"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="过敏"
+            android:checked="true"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_infectious"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="传染"
+            android:button="@null"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_heatstroke"
+            style="@style/fragment_tools_case_text"
+            android:background="@drawable/ui_selector_fragment_green"
+            android:text="中暑"
+            android:button="@null"
+            />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:background="@drawable/ui_shape_background_one"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/btn_comfirm"
+            style="@style/fragment_tools_case_text"
+            android:textColor="@color/color_white"
+            android:background="@drawable/ui_selector_fragment_blue"
+            android:text="状况确认"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

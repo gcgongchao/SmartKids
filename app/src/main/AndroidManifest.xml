@@ -98,6 +98,12 @@
             android:name=".provider.FeedProvider"
             android:authorities="com.cmbb.smartkids.syncadapter"
             android:exported="false"/>
+        <provider
+            android:name="com.cmbb.smartkids.provider.ProviderUserAccount"
+            android:authorities="com.cmbb.smartkids.useraccount"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
 
         <activity
             android:name=".account.AuthenticatorActivity"

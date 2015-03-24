@@ -1,8 +1,9 @@
 package com.cmbb.smartkids.base;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.ui.DialogControl;
@@ -13,7 +14,7 @@ import com.umeng.analytics.MobclickAgent;
 /**
  * Created by Sen on 2015/3/6.
  */
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements View.OnClickListener{
 
     protected static String TAG;
 
@@ -154,5 +155,10 @@ public class BaseFragment extends Fragment {
             return ((DialogControl) activity).showWaitDialog(messge);
         }
         return null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

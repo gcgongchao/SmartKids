@@ -1,7 +1,9 @@
-package com.cmbb.smartkids;
+package com.cmbb.smartkids.fragment;
 
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -9,62 +11,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.adapter.SlidingFragmentActivePagerAdapter;
+import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.ui.slidingtab.SlidingTabLayout;
 import com.cmbb.smartkids.tools.logger.Log;
 
 /**
- * A basic sample which shows how to use {@link com.cmbb.smartkids.base.ui.slidingtab.SlidingTabLayout}
- * to display a custom {@link android.support.v4.view.ViewPager} title strip which gives continuous feedback to the user
- * when scrolling.
+ * Created by N.Sun
  */
-public class SlidingTabsBasicFragment extends Fragment {
+public class FragmentActive extends BaseFragment implements LoaderManager.LoaderCallbacks {
+    private static final String TAG = FragmentActive.class.getSimpleName();
 
-    static final String LOG_TAG = "SlidingTabsBasicFragment";
-
-    /**
-     * A custom {@link android.support.v4.view.ViewPager} title strip which looks much like Tabs present in Android v4.0 and
-     * above, but is designed to give continuous feedback to the user when scrolling.
-     */
     private SlidingTabLayout mSlidingTabLayout;
-
-    /**
-     * A {@link android.support.v4.view.ViewPager} which will be used in conjunction with the {@link SlidingTabLayout} above.
-     */
     private ViewPager mViewPager;
+    private SlidingFragmentActivePagerAdapter mSlidingFragmentActivePagerAdapter;
 
-    /**
-     * Inflates the {@link android.view.View} which will be displayed by this {@link android.support.v4.app.Fragment}, from the app's
-     * resources.
-     */
+    private String[] mTitles = {"动态", "消息"};
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sample, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mSlidingFragmentActivePagerAdapter = new SlidingFragmentActivePagerAdapter
+                (getChildFragmentManager(), mTitles);
     }
 
-    // BEGIN_INCLUDE (fragment_onviewcreated)
-
-    /**
-     * This is called after the {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)} has finished.
-     * Here we can pick out the {@link android.view.View}s we need to configure from the content view.
-     * <p/>
-     * We set the {@link android.support.v4.view.ViewPager}'s adapter to be an instance of {@link SamplePagerAdapter}. The
-     * {@link SlidingTabLayout} is then given the {@link android.support.v4.view.ViewPager} so that it can populate itself.
-     *
-     * @param view View created in {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)}
-     */
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        // BEGIN_INCLUDE (setup_viewpager)
-        // Get the ViewPager and set it's PagerAdapter so that it can display items
-        mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new SamplePagerAdapter());
-        // END_INCLUDE (setup_viewpager)
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_active, container, false);
+        initTabTop(rootView);
+        return rootView;
+    }
 
-        // BEGIN_INCLUDE (setup_slidingtablayout)
-        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
-        // it's PagerAdapter set.
-        mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+    private void initTabTop(View rootView) {
+        mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        mViewPager.setAdapter(mSlidingFragmentActivePagerAdapter);
+        mSlidingTabLayout = (SlidingTabLayout) rootView.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setCustomTabView(R.layout.sliding_tabview_item, R.id.sliding_tabs_item);
         mSlidingTabLayout.setViewPager(mViewPager);
         mSlidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
@@ -78,25 +60,33 @@ public class SlidingTabsBasicFragment extends Fragment {
                 return getResources().getColor(android.R.color.transparent);
             }
         });
-
-        // END_INCLUDE (setup_slidingtablayout)
     }
-    // END_INCLUDE (fragment_onviewcreated)
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} used to display pages in this sample.
-     * The individual pages are simple and just display two lines of text. The important section of
-     * this class is the {@link #getPageTitle(int)} method which controls what is displayed in the
-     * {@link SlidingTabLayout}.
-     */
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Object data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+
+    }
+
     class SamplePagerAdapter extends PagerAdapter {
+
+        private final String TAG = SamplePagerAdapter.class.getSimpleName();
 
         /**
          * @return the number of pages to display
          */
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         /**
@@ -119,7 +109,7 @@ public class SlidingTabsBasicFragment extends Fragment {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Title " + (position + 1);
+            return "Active " + (position + 1);
         }
         // END_INCLUDE (pageradapter_getpagetitle)
 
@@ -139,7 +129,7 @@ public class SlidingTabsBasicFragment extends Fragment {
             TextView title = (TextView) view.findViewById(R.id.item_title);
             title.setText(String.valueOf(position + 1));
 
-            Log.i(LOG_TAG, "instantiateItem() [position: " + position + "]");
+            Log.i(TAG, "instantiateItem() [position: " + position + "]");
 
             // Return the View
             return view;
@@ -152,7 +142,7 @@ public class SlidingTabsBasicFragment extends Fragment {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
-            Log.i(LOG_TAG, "destroyItem() [position: " + position + "]");
+            Log.i(TAG, "destroyItem() [position: " + position + "]");
         }
 
     }

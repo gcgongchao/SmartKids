@@ -4,6 +4,7 @@
     <string name="action_logout">登出</string>
     <string name="app_name">萌宝派</string>
     <string name="loading">加载中...</string>
+    <string name="loading_no_more">没有更多了...</string>
     <string name="tb_munion_tip_download_prefix">正在下载:</string>
     <string name="umeng_common_icon">图标</string>
     <string name="hello_world">你好，世界！</string>

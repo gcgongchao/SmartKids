@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 
 /**
- * Created by Administrator on 2015/3/19.
+ * Created by N.Sun
  */
 public abstract class BaseNoCompatActivity extends Activity implements View.OnClickListener,
         DialogControl, ToastControl {
@@ -62,7 +63,7 @@ public abstract class BaseNoCompatActivity extends Activity implements View.OnCl
         try {
             mActionBar = (ActionBar) getActionBar();
             mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setDisplayShowHomeEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(false);
         } catch (NullPointerException e) {
 
         }
@@ -107,6 +108,16 @@ public abstract class BaseNoCompatActivity extends Activity implements View.OnCl
         unregisterReceiver(existReceiver);
         ImageLoader.getInstance().clearMemoryCache();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

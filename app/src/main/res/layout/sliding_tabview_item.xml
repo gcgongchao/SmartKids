@@ -5,7 +5,6 @@
           android:layout_height="match_parent"
           android:padding="12dp"
           android:textColor="@drawable/tab_text_color"
-          android:textStyle="bold"
           android:text="meizu"
           android:textSize="@dimen/txt_size_18">
 

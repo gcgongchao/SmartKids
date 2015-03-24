@@ -20,7 +20,6 @@ import android.content.Context;
 public class BaiduLocation {
     private final static String TAG = BaiduLocation.class.getSimpleName();
 
-
     public LocationClient mLocClient;
 
     public BaiduLocation(BDLocationListener bdLocationListener) {

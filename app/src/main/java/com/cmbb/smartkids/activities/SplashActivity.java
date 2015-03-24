@@ -1,12 +1,15 @@
 package com.cmbb.smartkids.activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.account.User;
 import com.cmbb.smartkids.activities.login.LoginActivity;
 import com.cmbb.smartkids.base.BaseActivity;
+import com.cmbb.smartkids.db.SmartKidContract;
 
 import java.util.Random;
 import java.util.Timer;
@@ -41,13 +44,11 @@ public class SplashActivity extends BaseActivity {
         initLogin();
     }
 
-
-
     private void initLogin() {
     }
 
     private void initTask() {
-        final Intent intent = new Intent(this, LoginActivity.class);
+        final Intent intent = new Intent(this, HomeActivity.class);
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override

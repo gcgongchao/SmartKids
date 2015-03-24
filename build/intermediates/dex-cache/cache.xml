@@ -2,6 +2,55 @@
 <items version="2" >
 
     <item
+        jar="E:\SmartKids\Projects\SmartKids\app\build\intermediates\exploded-aar\SmartKids\ViewPagerIndicator-lib\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="07cc1e46af02473946797a88b9c676b752c77b0c">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\classes-5c8a21e014079e7becd8da3e35aab1bf00d75954.jar" />
+    </item>
+    <item
+        jar="E:\SmartKids\Projects\SmartKids\app\build\intermediates\exploded-aar\SmartKids\shape-imageview-lib\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8b0cc17afdab08015e3c208d1933cd5fc9dd2965">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\classes-c30d02852bc044107f62764129a7dfb26d9feedc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\net.sf.kxml\kxml2\2.3.0\ccbc77a5fd907ef863c29f3596c6f54ffa4e9442\kxml2-2.3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ccbc77a5fd907ef863c29f3596c6f54ffa4e9442">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\kxml2-2.3.0-5f04b87d0888745c48bf437dfe0c6c811b2a1c83.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.2.0\c0b52915a48fa91b1b94a28d4a2997bac5f524df\okio-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\okio-1.2.0-6b3571b13b5cffbcf3dc553c7233ac35df6e0679.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\library-2.4.0-dd460f45d27a359687729c3c169358b1eda3100b.jar" />
+    </item>
+    <item
+        jar="E:\SmartKids\Projects\SmartKids\app\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3b72dd259a962778692bb02fa3032c210a4d2e9d">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android-87529ae229f53f8ce4bc4a5c3999f374d69095c0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.umeng.analytics\umeng-analytics\5.4.1\cdbe5b692334ae8452fa5aa9ba2982fef4a6fff2\umeng-analytics-5.4.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cdbe5b692334ae8452fa5aa9ba2982fef4a6fff2">
+        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\umeng-analytics-5.4.1-352a03154e6c7f49b5ac2403df6094115bda9d70.jar" />
+    </item>
+    <item
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.3\a85588bec3e2c4584d593d3f15df1677321bca72\universal-image-loader-1.9.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -44,39 +93,11 @@
         <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\classes-30071e367009670c236d026bfe8cf3ca645989dc.jar" />
     </item>
     <item
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.2.0\c0b52915a48fa91b1b94a28d4a2997bac5f524df\okio-1.2.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
-        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\okio-1.2.0-6b3571b13b5cffbcf3dc553c7233ac35df6e0679.jar" />
-    </item>
-    <item
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\library-2.4.0-dd460f45d27a359687729c3c169358b1eda3100b.jar" />
-    </item>
-    <item
-        jar="E:\SmartKids\Projects\SmartKids\app\libs\BaiduLBS_Android.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3b72dd259a962778692bb02fa3032c210a4d2e9d">
-        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android-87529ae229f53f8ce4bc4a5c3999f374d69095c0.jar" />
-    </item>
-    <item
         jar="E:\SmartKids\Projects\SmartKids\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\classes-fc098a4fb4402f01f1cc692eba5c2120bfb0f20a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.umeng.analytics\umeng-analytics\5.4.1\cdbe5b692334ae8452fa5aa9ba2982fef4a6fff2\umeng-analytics-5.4.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="cdbe5b692334ae8452fa5aa9ba2982fef4a6fff2">
-        <dex dex="E:\SmartKids\Projects\SmartKids\app\build\intermediates\pre-dexed\debug\umeng-analytics-5.4.1-352a03154e6c7f49b5ac2403df6094115bda9d70.jar" />
     </item>
 
 </items>

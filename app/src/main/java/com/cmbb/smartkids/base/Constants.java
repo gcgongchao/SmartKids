@@ -26,6 +26,18 @@ public final class Constants {
         public static final String AUTHTOKEN_TYPE = SMARTKIDS_ACCOUNT_TYPE;
     }
 
+    public static final class Test{
+
+        public static final String[] testUrl = {
+                "http://pic.58pic.com/58pic/12/77/30/44758PIC2er.jpg",
+                "http://img4.imgtn.bdimg.com/it/u=3763887074,2416496220&fm=11&gp=0.jpg",
+                "http://img4.imgtn.bdimg.com/it/u=769147042,2358140694&fm=11&gp=0.jpg",
+                "http://img5.imgtn.bdimg.com/it/u=835925941,1324011916&fm=21&gp=0.jpg",
+                "http://img4.imgtn.bdimg.com/it/u=2706117047,3698169813&fm=11&gp=0.jpg",
+                "http://img4.imgtn.bdimg.com/it/u=3110370447,1273506947&fm=21&gp=0.jpg",
+                "http://img1.imgtn.bdimg.com/it/u=3833978351,2510224374&fm=21&gp=0.jpg"};
+    }
+
     public static final class Sync{
         private Sync() {
 

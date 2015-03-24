@@ -32,6 +32,7 @@ public class XXModelActivity extends BaseNoCompatActivity {
 
     @Override
     protected void init() {
+
         mFadingActionBarHelper = new FadingActionBarHelper(getActionBar(),
                 getResources().getDrawable(R.color.theme_color));
 
