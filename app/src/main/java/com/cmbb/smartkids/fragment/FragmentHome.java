@@ -54,7 +54,6 @@ public class FragmentHome extends BaseFragment implements LoaderManager.LoaderCa
                 return getResources().getColor(android.R.color.transparent);
             }
         });
-
     }
 
     @Override

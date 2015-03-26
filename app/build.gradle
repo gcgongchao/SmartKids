@@ -42,5 +42,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile project(':ViewPagerIndicator-lib')
     compile project(':shape-imageview-lib')
+    compile 'com.google.code.gson:gson:2.3.1'
 }
 

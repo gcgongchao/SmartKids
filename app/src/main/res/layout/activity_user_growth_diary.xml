@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.cmbb.smartkids.activities.user.GrowthDiaryActivity"
+                android:background="@color/theme_color"
+                android:clipChildren="false">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:theme="@style/AppTheme.Base">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="center"
+            android:textSize="@dimen/txt_size_20"
+            android:textColor="@android:color/white"
+            android:id="@+id/toolbar_title"/>
+    </android.support.v7.widget.Toolbar>
+
+    <com.cmbb.smartkids.base.ui.card.CardView
+        android:id="@+id/cardView1"
+        android:layout_below="@id/tl_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        >
+    </com.cmbb.smartkids.base.ui.card.CardView>
+
+    <LinearLayout
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+</RelativeLayout>

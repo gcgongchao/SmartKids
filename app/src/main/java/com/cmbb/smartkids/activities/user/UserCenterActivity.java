@@ -21,7 +21,7 @@ import com.cmbb.smartkids.base.ui.notboring.KenBurnsView;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 2015/3/19.
+ * Created by N.Sun
  */
 public class UserCenterActivity extends BaseNoCompatActivity {
     private static final String TAG = UserCenterActivity.class.getSimpleName();
@@ -47,6 +47,17 @@ public class UserCenterActivity extends BaseNoCompatActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_user_center;
+    }
+
+    @Override
+    protected void initActionbar() {
+        try {
+            mActionBar = (ActionBar) getActionBar();
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+        } catch (NullPointerException e) {
+
+        }
     }
 
     @Override

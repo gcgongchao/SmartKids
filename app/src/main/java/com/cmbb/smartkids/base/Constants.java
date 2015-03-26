@@ -1,5 +1,8 @@
 package com.cmbb.smartkids.base;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by N.Sun
  */
@@ -13,6 +16,7 @@ public final class Constants {
         private Auth() {
 
         }
+
         // Account type id
         public static final String SMARTKIDS_ACCOUNT_TYPE = "com.cmbb.smartkids";
 
@@ -26,7 +30,30 @@ public final class Constants {
         public static final String AUTHTOKEN_TYPE = SMARTKIDS_ACCOUNT_TYPE;
     }
 
-    public static final class Test{
+    public static final class User {
+        private User() {
+
+        }
+
+        public static final String BASE_URL = "http://192.168.100.151:8089/spring";
+        public static final String REGISTER_URL = BASE_URL+"/login/register";
+        public static final String VALIDPHONE_URL = BASE_URL+"/login/validPhone";
+        public static final String LOGINS_URL = BASE_URL+"/login/logins";
+
+
+
+
+        public static boolean isMobileNo(String phone) {
+            String match = "^((13|15|18|17)//d{9})|147//d{8}$";
+            Pattern pattern = Pattern.compile(match);
+            Matcher matcher = pattern.matcher(phone);
+            return matcher.matches();
+        }
+
+
+    }
+
+    public static final class Test {
 
         public static final String[] testUrl = {
                 "http://pic.58pic.com/58pic/12/77/30/44758PIC2er.jpg",
@@ -38,13 +65,13 @@ public final class Constants {
                 "http://img1.imgtn.bdimg.com/it/u=3833978351,2510224374&fm=21&gp=0.jpg"};
     }
 
-    public static final class Sync{
+    public static final class Sync {
         private Sync() {
 
         }
 
         public static final String FEED_URL = "http://android-developers.blogspot.com/atom.xml";
-        public static final String ACCOUNT_TYPE  = "com.cmbb.smartkids.syncadapter.account";
+        public static final String ACCOUNT_TYPE = "com.cmbb.smartkids.syncadapter.account";
     }
 
     public static final String INTENT_ACTION_EXIT_APP = "com.dmbi.childrenclub.intent.action.exitapp";

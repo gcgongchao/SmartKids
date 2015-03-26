@@ -20,7 +20,15 @@ import com.cmbb.smartkids.activities.register.RegisterActivity_One;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
 import com.cmbb.smartkids.db.FeedContract;
+import com.cmbb.smartkids.network.OkHttp;
 import com.cmbb.smartkids.tools.logger.Log;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by N.Sun
@@ -123,20 +131,41 @@ public class AuthenticatorActivity extends BaseActivity {
     //处理登录
     private void handleLogin() {
         // 请求服务器获取User对象
-        User user = new User();
-        user.setAvatarUrl("http://www.meizu.com");
-        user.setPhone("15201921714");
-        user.setUsername("N.Sun");
-        user.setToken("fwheif13sd289190ehfwihfuh");
-        email = user.getUsername();
-        password = "niesen12345";
-        token = user.getToken();
+        Map<String, String> body = new HashMap<>();
+        body.put("registerPhone", "15201921714");
+        OkHttp.asyncPost(Constants.User.BASE_URL + Constants.User.VALIDPHONE_URL, body, new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Log.i(TAG, "err = " + e);
+            }
 
-        onAuthenticationResult();
-        if (BuildConfig.DEBUG) {
-            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
-                    password));
-        }
+            @Override
+            public void onResponse(Response response) throws IOException {
+                Log.i(TAG, "succ1 = " + response.body().string());
+                Log.i(TAG, "succ2 = " + response.message());
+                Log.i(TAG, "succ3 = " + response.cacheControl().toString());
+                Log.i(TAG, "succ4 = " + response.isSuccessful());
+                Log.i(TAG, "succ5 = " + response.networkResponse());
+                Log.i(TAG, "succ6 = " + response.cacheResponse());
+            }
+        });
+
+
+//        User user = new User();
+//        user.setAvatarUrl("http://www.meizu.com");
+//        user.setPhone("15201921714");
+//        user.setUsername("N.Sun");
+//        user.setToken("fwheif13sd289190ehfwihfuh");
+//
+//        email = user.getUsername();
+//        password = "niesen12345";
+//        token = user.getToken();
+//
+//        onAuthenticationResult();
+//        if (BuildConfig.DEBUG) {
+//            Log.i(TAG, "格式化 = " + String.format("%s=%s&%s=%s", PARAM_USERNAME, email, PARAM_PASSWORD,
+//                    password));
+//        }
     }
 
     private void onAuthenticationResult() {

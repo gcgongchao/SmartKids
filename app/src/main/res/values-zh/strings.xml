@@ -9,7 +9,7 @@
     <string name="umeng_common_icon">图标</string>
     <string name="hello_world">你好，世界！</string>
     <string name="UMUpdateCheck">2.6.0.20150211</string>
-    <string name="splash_label">启动界面</string>
+    <string name="splash_label">萌宝派</string>
     <string name="login_label">用户登录</string>
     <string name="register_label">用户注册</string>
     <string name="forget_label">忘记密码</string>

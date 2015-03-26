@@ -13,10 +13,15 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.account.ApiKeyProvider;
+import com.cmbb.smartkids.activities.user.GrowthDiaryActivity;
 import com.cmbb.smartkids.activities.user.UserCenterActivity;
 import com.cmbb.smartkids.activities.user.XXModelActivity;
 import com.cmbb.smartkids.base.BaseActivity;
@@ -30,6 +35,10 @@ import com.cmbb.smartkids.tools.logger.Log;
 import com.umeng.update.UmengUpdateAgent;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by N.Sun
@@ -42,7 +51,10 @@ public class HomeActivity extends BaseActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     String title_cache;
 
-    TextView btn_home, btn_active, btn_doc, btn_tools, test;
+    TextView btn_home, btn_active, btn_doc, btn_tools;
+    RelativeLayout rl_user;
+    ListView lv_user_item;
+
     FragmentHome fragmentHome = new FragmentHome();
     FragmentActive fragmentActive = new FragmentActive();
     FragmentDoc fragmentDoc = new FragmentDoc();
@@ -92,8 +104,27 @@ public class HomeActivity extends BaseActivity {
         };
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        test = (TextView) findViewById(R.id.test);
-        test.setOnClickListener(this);
+        rl_user = (RelativeLayout) findViewById(R.id.rl_user);
+        rl_user.setOnClickListener(this);
+
+        lv_user_item = (ListView) findViewById(R.id.lv_user_item);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, getData(), R.layout.drawerlayout_list_item, new String[]{"title"},
+                new int[]{R.id.tv_item_title});
+        lv_user_item.setAdapter(simpleAdapter);
+        lv_user_item.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent intent = new Intent(HomeActivity.this, GrowthDiaryActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+
+            }
+        });
+
     }
 
     @Override
@@ -109,7 +140,6 @@ public class HomeActivity extends BaseActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -168,12 +198,9 @@ public class HomeActivity extends BaseActivity {
                 btn_tools.setSelected(true);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container,
                         fragmentTools).commit();
-
-//                Intent xx = new Intent(this, XXModelActivity.class);
-//                startActivity(xx);
                 break;
             // Drawer
-            case R.id.test:
+            case R.id.rl_user:
                 // 检测登录
                 ApiKeyProvider.getAuthKey(this, new AccountManagerCallback<Bundle>() {
                     @Override
@@ -199,6 +226,33 @@ public class HomeActivity extends BaseActivity {
         }
         super.onClick(v);
     }
+
+    // 测试数据
+    private List<Map<String, Object>> getData() {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("img", R.drawable.splash_backgroud_one);
+        map.put("title", "成长日记");
+        list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("img", R.drawable.splash_backgroud_two);
+        map.put("title", "XXX02");
+        list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("img", R.drawable.splash_backgroud_three);
+        map.put("title", "XXX03");
+        list.add(map);
+
+        map = new HashMap<String, Object>();
+        map.put("img", R.drawable.splash_backgroud_four);
+        map.put("title", "XXX04");
+        list.add(map);
+
+        return list;
+    }
+    // 测试数据
 
     @Override
     public void onBackPressed() {

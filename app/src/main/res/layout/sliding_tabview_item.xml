@@ -6,6 +6,6 @@
           android:padding="12dp"
           android:textColor="@drawable/tab_text_color"
           android:text="meizu"
-          android:textSize="@dimen/txt_size_18">
+          android:textSize="@dimen/txt_size_16">
 
 </TextView>

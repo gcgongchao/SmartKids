@@ -134,7 +134,7 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
 
     @Override
     public void showToast(String message) {
-        showToast(message, Toast.LENGTH_LONG, 0, 17);
+        showToast(message, Toast.LENGTH_SHORT, 0, 17);
     }
 
     @Override
