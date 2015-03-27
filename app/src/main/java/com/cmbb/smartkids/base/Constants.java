@@ -12,6 +12,8 @@ public final class Constants {
 
     }
 
+    public static final String BASE_URL = "http://192.168.100.151:8089/spring";
+
     public static final class Auth {
         private Auth() {
 
@@ -35,21 +37,26 @@ public final class Constants {
 
         }
 
-        public static final String BASE_URL = "http://192.168.100.151:8089/spring";
-        public static final String REGISTER_URL = BASE_URL+"/login/register";
-        public static final String VALIDPHONE_URL = BASE_URL+"/login/validPhone";
-        public static final String LOGINS_URL = BASE_URL+"/login/logins";
-
-
-
+        public static final String REGISTER_URL = BASE_URL + "/login/register";
+        public static final String VALIDPHONE_URL = BASE_URL + "/login/validPhone";
+        public static final String LOGINS_URL = BASE_URL + "/login/logins";
 
         public static boolean isMobileNo(String phone) {
-            String match = "^((13|15|18|17)//d{9})|147//d{8}$";
+            String match = "^((13|15|18|17)\\d{9})|147\\d{8}$";
             Pattern pattern = Pattern.compile(match);
             Matcher matcher = pattern.matcher(phone);
             return matcher.matches();
         }
 
+    }
+
+    public static final class Home {
+
+        private Home() {
+
+        }
+
+        public static final String AREATYPEPLATE_URL = BASE_URL + "/plate/findByAreaTypeFromPlate";
 
     }
 
@@ -75,4 +82,5 @@ public final class Constants {
     }
 
     public static final String INTENT_ACTION_EXIT_APP = "com.dmbi.childrenclub.intent.action.exitapp";
+    public static final String INTENT_ACTION_Toast = "com.dmbi.childrenclub.intent.action.toast";
 }

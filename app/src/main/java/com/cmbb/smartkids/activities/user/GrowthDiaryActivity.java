@@ -68,7 +68,6 @@ public class GrowthDiaryActivity extends BaseActivity implements LoaderManager.L
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

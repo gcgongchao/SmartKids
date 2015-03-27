@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/user_password"
-                android:inputType="phone"
+                android:inputType="textPassword"
                 android:maxLength="11"
                 android:paddingBottom="@dimen/padding_8"
                 android:paddingLeft="@dimen/padding_6"

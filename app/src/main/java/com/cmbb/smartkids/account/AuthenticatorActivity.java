@@ -8,19 +8,26 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Contacts;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cmbb.smartkids.Application;
 import com.cmbb.smartkids.BuildConfig;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.activities.HomeActivity;
 import com.cmbb.smartkids.activities.psw.ForgetPswActivityOne;
 import com.cmbb.smartkids.activities.register.RegisterActivity_One;
+import com.cmbb.smartkids.activities.register.RegisterActivity_Two;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.broadcast.ToastBroadcast;
 import com.cmbb.smartkids.db.FeedContract;
 import com.cmbb.smartkids.network.OkHttp;
+import com.cmbb.smartkids.network.ResponseActivityCallback;
+import com.cmbb.smartkids.network.model.ResponseModel;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -38,6 +45,7 @@ public class AuthenticatorActivity extends BaseActivity {
     private static final String TAG = AuthenticatorActivity.class.getSimpleName();
 
     TextView btn_go_register, btn_forget_password, btn_login;
+    EditText et_login_phone, et_login_psw;
 
     private static final long SYNC_FREQUENCY = 60 * 60;  // 1 hour (in seconds)
 
@@ -61,7 +69,8 @@ public class AuthenticatorActivity extends BaseActivity {
     protected boolean requestNewAccount = false;
     private String authToken;
     private String authTokenType;
-    private String email;
+
+    private String username;
     private String password;
     private String token;
 
@@ -91,10 +100,10 @@ public class AuthenticatorActivity extends BaseActivity {
         accountManager = AccountManager.get(this);
         //获取参数
         final Intent intent = getIntent();
-        email = intent.getStringExtra(PARAM_USERNAME);
+        //username = intent.getStringExtra(PARAM_USERNAME);
         authTokenType = intent.getStringExtra(PARAM_AUTHTOKEN_TYPE);
         confirmCredentials = intent.getBooleanExtra(PARAM_CONFIRM_CREDENTIALS, false);
-        requestNewAccount = email == null;
+        requestNewAccount = username == null;
     }
 
     private void initView() {
@@ -107,6 +116,8 @@ public class AuthenticatorActivity extends BaseActivity {
         btn_go_register.setOnClickListener(this);
         btn_forget_password.setOnClickListener(this);
         btn_login.setOnClickListener(this);
+        et_login_phone = (EditText) findViewById(R.id.et_login_phone);
+        et_login_psw = (EditText) findViewById(R.id.et_login_psw);
     }
 
     @Override
@@ -126,30 +137,61 @@ public class AuthenticatorActivity extends BaseActivity {
                 handleLogin();
                 break;
         }
+
     }
 
     //处理登录
     private void handleLogin() {
+        username = et_login_phone.getText().toString().trim();
+        password = et_login_psw.getText().toString().trim();
+        if (TextUtils.isEmpty(username)) {
+            showToast("请输入手机号码");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            showToast("请输入密码");
+            return;
+        }
+        if (!Constants.User.isMobileNo(username)) {
+            showToast("请输入正确的手机号码");
+            return;
+        }
         // 请求服务器获取User对象
+        showWaitDialog("正在登录...");
         Map<String, String> body = new HashMap<>();
-        body.put("registerPhone", "15201921714");
-        OkHttp.asyncPost(Constants.User.BASE_URL + Constants.User.VALIDPHONE_URL, body, new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                Log.i(TAG, "err = " + e);
-            }
+        body.put("registerPhone", username);
+        body.put("registerPassword", password);
+        OkHttp.asyncPost(Constants.User.LOGINS_URL, body,
+                new ResponseActivityCallback<ResponseModel>(this, ResponseModel.class) {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+                        super.onFailure(request, e);
+                    }
 
-            @Override
-            public void onResponse(Response response) throws IOException {
-                Log.i(TAG, "succ1 = " + response.body().string());
-                Log.i(TAG, "succ2 = " + response.message());
-                Log.i(TAG, "succ3 = " + response.cacheControl().toString());
-                Log.i(TAG, "succ4 = " + response.isSuccessful());
-                Log.i(TAG, "succ5 = " + response.networkResponse());
-                Log.i(TAG, "succ6 = " + response.cacheResponse());
-            }
-        });
+                    @Override
+                    public void onSuccess(ResponseModel data) {
+                        super.onSuccess(data);
+                        if ("1".equals(data.getCode().trim())) {
+                            // showToast
+                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
+                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
+                            sendBroadcast(intent);
+                            // 注册系统 获取token
+                            token = data.getContext().getToken();
+                            // token 全局
+                            Application.token = data.getContext().getToken();
+                            onAuthenticationResult();
 
+                        } else {
+                            // 发送Toast
+                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
+                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
+                            sendBroadcast(intent);
+                        }
+                    }
+                });
 
 //        User user = new User();
 //        user.setAvatarUrl("http://www.meizu.com");
@@ -180,18 +222,21 @@ public class AuthenticatorActivity extends BaseActivity {
     }
 
     private void finishConfirmCredentials(boolean result) {
-        final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
+        final Account account = new Account(username, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
         accountManager.setPassword(account, password);
         final Intent intent = new Intent();
         intent.putExtra(AccountManager.KEY_BOOLEAN_RESULT, result);
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
+        Intent intent1 = new Intent(AuthenticatorActivity.this,
+                HomeActivity.class);
+        startActivity(intent1);
         finish();
     }
 
     private void finishLogin() {
         authToken = token;
-        final Account account = new Account(email, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
+        final Account account = new Account(username, Constants.Auth.SMARTKIDS_ACCOUNT_TYPE);
         if (requestNewAccount) {
             accountManager.addAccountExplicitly(account, password, null);
             accountManager.setAuthToken(account, Constants.Auth.AUTHTOKEN_TYPE, authToken);
@@ -209,13 +254,17 @@ public class AuthenticatorActivity extends BaseActivity {
             accountManager.setPassword(account, password);
         }
         final Intent intent = new Intent();
-        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, email);
+        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, username);
         intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, Constants.Auth.SMARTKIDS_ACCOUNT_NAME);
         if (authTokenType != null && authTokenType.equals(Constants.Auth.AUTHTOKEN_TYPE)) {
             intent.putExtra(AccountManager.KEY_AUTHTOKEN, authToken);
         }
         setAccountAuthenticatorResult(intent.getExtras());
         setResult(RESULT_OK, intent);
+        // 返回主页
+        Intent intent1 = new Intent(AuthenticatorActivity.this,
+                HomeActivity.class);
+        startActivity(intent1);
         finish();
     }
 

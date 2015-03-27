@@ -71,7 +71,6 @@ public class FragmentHome_Only extends BaseFragment implements LoaderManager.Loa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getLoaderManager().initLoader(0, null, this);
     }
 

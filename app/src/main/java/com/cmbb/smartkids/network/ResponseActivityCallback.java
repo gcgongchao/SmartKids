@@ -1,7 +1,13 @@
 package com.cmbb.smartkids.network;
 
+import android.content.Intent;
+
 import com.cmbb.smartkids.base.BaseActivity;
-import com.google.gson.Gson;
+import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.broadcast.ToastBroadcast;
+import com.cmbb.smartkids.tools.logger.Log;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -13,9 +19,10 @@ import java.io.IOException;
  */
 public class ResponseActivityCallback<T> implements Callback {
 
+    private static final String TAG = ResponseActivityCallback.class.getSimpleName();
     private BaseActivity mContext;
     private Class cls;
-    private final Gson gson = new Gson();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public ResponseActivityCallback(BaseActivity context, Class cls) {
         this.mContext = context;
@@ -25,6 +32,10 @@ public class ResponseActivityCallback<T> implements Callback {
     @Override
     public void onFailure(Request request, IOException e) {
         mContext.hideWaitDialog();
+        Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+        intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
+        intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, "请检测网络");
+        mContext.sendBroadcast(intent);
 
     }
 
@@ -32,7 +43,12 @@ public class ResponseActivityCallback<T> implements Callback {
     public void onResponse(Response response) throws IOException {
         mContext.hideWaitDialog();
         if (response.isSuccessful()) {
-            Object data = gson.fromJson(response.body().charStream(), cls);
+            Log.i(TAG, "network = " + response.networkResponse());
+            Log.i(TAG, "cache = " + response.cacheResponse());
+
+            Object data = objectMapper.readValues(new JsonFactory().createParser(response.body()
+                    .charStream()), cls).next();
+            Log.i(TAG, "response = " + data.toString());
             onSuccess((T) data);
         }
     }

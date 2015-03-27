@@ -18,6 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:textColor="@color/color_main_black"
         android:layout_toRightOf="@id/waiting_pb"
         android:textSize="15sp" />
 

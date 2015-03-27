@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.account.ApiKeyProvider;
+import com.cmbb.smartkids.activities.home.SameCityAndAgeActivity;
 import com.cmbb.smartkids.activities.user.GrowthDiaryActivity;
 import com.cmbb.smartkids.activities.user.UserCenterActivity;
 import com.cmbb.smartkids.activities.user.XXModelActivity;
@@ -121,7 +122,6 @@ public class HomeActivity extends BaseActivity {
                         break;
                 }
 
-
             }
         });
 
@@ -141,7 +141,9 @@ public class HomeActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_test) {
+            Intent intent = new Intent(this, SameCityAndAgeActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -202,25 +204,27 @@ public class HomeActivity extends BaseActivity {
             // Drawer
             case R.id.rl_user:
                 // 检测登录
-                ApiKeyProvider.getAuthKey(this, new AccountManagerCallback<Bundle>() {
-                    @Override
-                    public void run(AccountManagerFuture<Bundle> future) {
-                        try {
-                            if (!TextUtils.isEmpty(future.getResult().getString(AccountManager
-                                    .KEY_AUTHTOKEN))) {
-                                Intent intent = new Intent(HomeActivity.this,
-                                        UserCenterActivity.class);
-                                startActivity(intent);
-                            }
-                        } catch (OperationCanceledException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (AuthenticatorException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//                ApiKeyProvider.getAuthKey(this, new AccountManagerCallback<Bundle>() {
+//                    @Override
+//                    public void run(AccountManagerFuture<Bundle> future) {
+//                        try {
+//                            if (!TextUtils.isEmpty(future.getResult().getString(AccountManager
+//                                    .KEY_AUTHTOKEN))) {
+//                                Intent intent = new Intent(HomeActivity.this,
+//                                        UserCenterActivity.class);
+//                                startActivity(intent);
+//                            }
+//                        } catch (OperationCanceledException e) {
+//                            e.printStackTrace();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        } catch (AuthenticatorException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+
+                ApiKeyProvider.getAuthKey(this, null);
                 break;
 
         }

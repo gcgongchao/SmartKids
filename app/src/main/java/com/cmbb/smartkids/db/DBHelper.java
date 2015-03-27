@@ -23,11 +23,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "DB Create");
         db.execSQL(SmartKidContract.UserAccount.CREATE_TABLE);
+        db.execSQL(SmartKidContract.HomeSameAge.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SmartKidContract.UserAccount.DELETE_TABLE);
+        db.execSQL(SmartKidContract.HomeSameAge.DELETE_TABLE);
         onCreate(db);
     }
 

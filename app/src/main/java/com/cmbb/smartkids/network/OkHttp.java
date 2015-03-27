@@ -32,9 +32,9 @@ public class OkHttp {
         mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
         mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
         mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
-//      mOkHttpClient.setCookieHandler(new CookieManager(
-//                new PersistentCookieStore(Application.context()),
-//                CookiePolicy.ACCEPT_ALL));
+        mOkHttpClient.setCookieHandler(new CookieManager(
+                new PersistentCookieStore(Application.context()),
+                CookiePolicy.ACCEPT_ALL));
         try {
             mOkHttpClient.setCache(new Cache(Application.context().getExternalCacheDir(), cacheSize));
         } catch (IOException e) {
@@ -97,7 +97,7 @@ public class OkHttp {
      * @param callback
      * @return
      */
-    public static void asyncGet(String url, Callback callback)throws IOException {
+    public static void asyncGet(String url, Callback callback) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();

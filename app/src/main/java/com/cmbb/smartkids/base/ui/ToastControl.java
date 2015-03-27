@@ -10,7 +10,7 @@ import com.cmbb.smartkids.Application;
 import com.cmbb.smartkids.R;
 
 /**
- * Created by Sen on 2015/3/6.
+ * Created by N.Sun
  */
 public interface ToastControl {
 

@@ -16,6 +16,8 @@ public class Application extends BaseApplication {
 
     private static final String TAG = Application.class.getSimpleName();
 
+    public static String token = "";
+
     @Override
     protected void init() {
         initImager(context());

@@ -7,23 +7,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.Constants;
+import com.cmbb.smartkids.broadcast.ToastBroadcast;
 import com.cmbb.smartkids.network.OkHttp;
 import com.cmbb.smartkids.network.ResponseActivityCallback;
-import com.cmbb.smartkids.network.model.ValidPhoneModel;
+import com.cmbb.smartkids.network.model.ResponseModel;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2015/3/17.
+ * Created by N.Sun
  */
 public class RegisterActivity_One extends BaseActivity {
     private static final String TAG = RegisterActivity_One.class.getSimpleName();
@@ -74,7 +75,7 @@ public class RegisterActivity_One extends BaseActivity {
     }
 
     private void attemptRegister() {
-        String phoneNo = et_login_phone.getText().toString().trim();
+        final String phoneNo = et_login_phone.getText().toString().trim();
         if (TextUtils.isEmpty(phoneNo)) {
             showToast("请输入手机号码");
             return;
@@ -88,22 +89,33 @@ public class RegisterActivity_One extends BaseActivity {
         Map<String, String> body = new HashMap<>();
         body.put("registerPhone", phoneNo);
         OkHttp.asyncPost(Constants.User.VALIDPHONE_URL, body,
-                new ResponseActivityCallback<ValidPhoneModel>(this, ValidPhoneModel.class) {
+                new ResponseActivityCallback<ResponseModel>(this, ResponseModel.class) {
                     @Override
                     public void onFailure(Request request, IOException e) {
                         super.onFailure(request, e);
-                        showToast("请检测网络");
                     }
 
                     @Override
-                    public void onSuccess(ValidPhoneModel data) {
+                    public void onSuccess(ResponseModel data) {
                         super.onSuccess(data);
                         Log.i(TAG, "CODE = " + data.getCode());
                         if ("1".equals(data.getCode().trim())) {
-                            Intent intent = new Intent(RegisterActivity_One.this,
+                            // showToast
+                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
+                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, "请查收验证码");
+                            sendBroadcast(intent);
+
+                            Intent intent1 = new Intent(RegisterActivity_One.this,
                                     RegisterActivity_Two.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent1.putExtra("phone", phoneNo);
+                            startActivity(intent1);
+                        } else {
+                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
+                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
+                            sendBroadcast(intent);
                         }
                     }
                 });

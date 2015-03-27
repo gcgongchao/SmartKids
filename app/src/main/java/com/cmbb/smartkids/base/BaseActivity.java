@@ -1,6 +1,5 @@
 package com.cmbb.smartkids.base;
 
-import android.app.ActionBar;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
@@ -23,6 +22,7 @@ import com.cmbb.smartkids.base.ui.PinterestToast;
 import com.cmbb.smartkids.base.ui.ToastControl;
 import com.cmbb.smartkids.base.ui.WaitDialog;
 import com.cmbb.smartkids.broadcast.ExitBroadcast;
+import com.cmbb.smartkids.broadcast.ToastBroadcast;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
@@ -30,8 +30,9 @@ import com.umeng.analytics.MobclickAgent;
 /**
  * Created by N.Sun.
  */
-public abstract class BaseActivity extends ActionBarActivity implements View.OnClickListener,
-        DialogControl, ToastControl {
+public abstract class BaseActivity extends ActionBarActivity implements View
+        .OnClickListener,
+        DialogControl, ToastControl{
 
     private static final String TAG = BaseActivity.class.getSimpleName();
     // Toast
@@ -42,6 +43,8 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
     private WaitDialog _waitDialog;
     // EXIT
     protected BroadcastReceiver existReceiver;
+    // Toast
+    protected ToastBroadcast toastBroadcast;
 
     //声明相关变量
     protected Toolbar toolbar;
@@ -78,9 +81,15 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
     }
 
     private void initExit() {
+        // 程序退出
         existReceiver = new ExitBroadcast(this);
         IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_EXIT_APP);
         registerReceiver(existReceiver, filter);
+        // Toast
+        toastBroadcast = new ToastBroadcast(this);
+        IntentFilter filter1 = new IntentFilter(Constants.INTENT_ACTION_Toast);
+        registerReceiver(toastBroadcast, filter1);
+
     }
 
     protected abstract void init(Bundle savedInstanceState);
@@ -114,6 +123,7 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
     @Override
     protected void onDestroy() {
         unregisterReceiver(existReceiver);
+        unregisterReceiver(toastBroadcast);
         ImageLoader.getInstance().clearMemoryCache();
         super.onDestroy();
     }
@@ -195,7 +205,7 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
                     ((ImageView) view.findViewById(R.id.icon_iv))
                             .setVisibility(View.VISIBLE);
                 }
-                Toast toast = new Toast(Application.context());
+                Toast toast = new Toast(this);
                 toast.setView(view);
                 toast.setGravity(gravity, 0, 0);
                 // toast.setGravity(Gravity.TOP|Gravity.LEFT,0 ,0);
@@ -271,6 +281,9 @@ public abstract class BaseActivity extends ActionBarActivity implements View.OnC
             }
         }
     }
+
+
+
 
     protected void recycleBitmap(ImageView view) {
         if (view == null)
