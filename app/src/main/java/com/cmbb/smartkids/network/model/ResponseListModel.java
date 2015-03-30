@@ -1,8 +1,10 @@
 package com.cmbb.smartkids.network.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cmbb.smartkids.db.SmartKidContract;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "code",
         "context"
 })
-public class ResponseModel {
+public class ResponseListModel {
+
+    // Context是一个数组
 
     @JsonProperty("code")
     private String code;
     @JsonProperty("context")
-    private Context context;
+    private ArrayList<HomeSameAge> context;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -44,7 +48,7 @@ public class ResponseModel {
      * @return The context
      */
     @JsonProperty("context")
-    public Context getContext() {
+    public ArrayList<HomeSameAge> getContext() {
         return context;
     }
 
@@ -52,7 +56,7 @@ public class ResponseModel {
      * @param context The context
      */
     @JsonProperty("context")
-    public void setContext(Context context) {
+    public void setContext(ArrayList<HomeSameAge> context) {
         this.context = context;
     }
 

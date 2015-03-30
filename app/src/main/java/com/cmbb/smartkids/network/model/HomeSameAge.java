@@ -2,6 +2,7 @@ package com.cmbb.smartkids.network.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -54,9 +55,7 @@ public class HomeSameAge {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
-     * @return
-     * The bigImg
+     * @return The bigImg
      */
     @JsonProperty("bigImg")
     public String getBigImg() {
@@ -64,9 +63,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param bigImg
-     * The bigImg
+     * @param bigImg The bigImg
      */
     @JsonProperty("bigImg")
     public void setBigImg(String bigImg) {
@@ -74,9 +71,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The bigImgHeight
+     * @return The bigImgHeight
      */
     @JsonProperty("bigImgHeight")
     public Object getBigImgHeight() {
@@ -84,9 +79,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param bigImgHeight
-     * The bigImgHeight
+     * @param bigImgHeight The bigImgHeight
      */
     @JsonProperty("bigImgHeight")
     public void setBigImgHeight(Object bigImgHeight) {
@@ -94,9 +87,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The bigImgWidth
+     * @return The bigImgWidth
      */
     @JsonProperty("bigImgWidth")
     public Object getBigImgWidth() {
@@ -104,9 +95,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param bigImgWidth
-     * The bigImgWidth
+     * @param bigImgWidth The bigImgWidth
      */
     @JsonProperty("bigImgWidth")
     public void setBigImgWidth(Object bigImgWidth) {
@@ -114,9 +103,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The connector
+     * @return The connector
      */
     @JsonProperty("connector")
     public String getConnector() {
@@ -124,9 +111,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param connector
-     * The connector
+     * @param connector The connector
      */
     @JsonProperty("connector")
     public void setConnector(String connector) {
@@ -134,9 +119,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The context
+     * @return The context
      */
     @JsonProperty("context")
     public String getContext() {
@@ -144,9 +127,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param context
-     * The context
+     * @param context The context
      */
     @JsonProperty("context")
     public void setContext(String context) {
@@ -154,9 +135,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The count
+     * @return The count
      */
     @JsonProperty("count")
     public Object getCount() {
@@ -164,9 +143,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param count
-     * The count
+     * @param count The count
      */
     @JsonProperty("count")
     public void setCount(Object count) {
@@ -174,9 +151,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The id
+     * @return The id
      */
     @JsonProperty("id")
     public Object getId() {
@@ -184,9 +159,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param id
-     * The id
+     * @param id The id
      */
     @JsonProperty("id")
     public void setId(Object id) {
@@ -194,9 +167,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The smallImg
+     * @return The smallImg
      */
     @JsonProperty("smallImg")
     public String getSmallImg() {
@@ -204,9 +175,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param smallImg
-     * The smallImg
+     * @param smallImg The smallImg
      */
     @JsonProperty("smallImg")
     public void setSmallImg(String smallImg) {
@@ -214,9 +183,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The smallImgHeight
+     * @return The smallImgHeight
      */
     @JsonProperty("smallImgHeight")
     public Object getSmallImgHeight() {
@@ -224,9 +191,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param smallImgHeight
-     * The smallImgHeight
+     * @param smallImgHeight The smallImgHeight
      */
     @JsonProperty("smallImgHeight")
     public void setSmallImgHeight(Object smallImgHeight) {
@@ -234,9 +199,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The smallImgWidth
+     * @return The smallImgWidth
      */
     @JsonProperty("smallImgWidth")
     public Object getSmallImgWidth() {
@@ -244,9 +207,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param smallImgWidth
-     * The smallImgWidth
+     * @param smallImgWidth The smallImgWidth
      */
     @JsonProperty("smallImgWidth")
     public void setSmallImgWidth(Object smallImgWidth) {
@@ -254,9 +215,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The title
+     * @return The title
      */
     @JsonProperty("title")
     public String getTitle() {
@@ -264,9 +223,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param title
-     * The title
+     * @param title The title
      */
     @JsonProperty("title")
     public void setTitle(String title) {
@@ -274,9 +231,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @return
-     * The type
+     * @return The type
      */
     @JsonProperty("type")
     public String getType() {
@@ -284,9 +239,7 @@ public class HomeSameAge {
     }
 
     /**
-     *
-     * @param type
-     * The type
+     * @param type The type
      */
     @JsonProperty("type")
     public void setType(String type) {
@@ -303,4 +256,22 @@ public class HomeSameAge {
         this.additionalProperties.put(name, value);
     }
 
+    @Override
+    public String toString() {
+        return "HomeSameAge{" +
+                "bigImg='" + bigImg + '\'' +
+                ", bigImgHeight=" + bigImgHeight +
+                ", bigImgWidth=" + bigImgWidth +
+                ", connector='" + connector + '\'' +
+                ", context='" + context + '\'' +
+                ", count=" + count +
+                ", id=" + id +
+                ", smallImg='" + smallImg + '\'' +
+                ", smallImgHeight=" + smallImgHeight +
+                ", smallImgWidth=" + smallImgWidth +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }

@@ -82,5 +82,5 @@ public final class Constants {
     }
 
     public static final String INTENT_ACTION_EXIT_APP = "com.dmbi.childrenclub.intent.action.exitapp";
-    public static final String INTENT_ACTION_Toast = "com.dmbi.childrenclub.intent.action.toast";
+    public static final String INTENT_ACTION_TOAST = "com.dmbi.childrenclub.intent.action.toast";
 }

@@ -173,7 +173,7 @@ public class AuthenticatorActivity extends BaseActivity {
                         super.onSuccess(data);
                         if ("1".equals(data.getCode().trim())) {
                             // showToast
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
                             sendBroadcast(intent);
@@ -182,10 +182,9 @@ public class AuthenticatorActivity extends BaseActivity {
                             // token 全局
                             Application.token = data.getContext().getToken();
                             onAuthenticationResult();
-
                         } else {
                             // 发送Toast
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
                             sendBroadcast(intent);

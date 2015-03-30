@@ -14,23 +14,6 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Space;
 
-/**
- * Little header fragment.
- * <p>
- * <b>Important</b>: Use {@link android.R.id#background} to specify background view and
- * {@link android.R.id#title} to specify view on top of the header
- * (for example: a shadow for {@code ActionBar}).
- * <p>
- * Created by AChep@xda <artemchep@gmail.com>
- */
-//  let's        \'/
-//  remember   -= * =-
-//  happy        {.}
-//  2013        {.-'}
-//  year!      {`_.-'}
-//  It was    {-` _.-'}
-//  amazing!   `":=:"`
-//              `---`
 public abstract class HeaderFragment extends Fragment {
 
     private static final String TAG = "HeaderFragment";
@@ -106,10 +89,10 @@ public abstract class HeaderFragment extends Fragment {
                                      int visibleItemCount, int totalItemCount) {
                     if (mOnScrollListener != null) {
                         mOnScrollListener.onScroll(
-                                absListView, firstVisibleItem, 
+                                absListView, firstVisibleItem,
                                 visibleItemCount, totalItemCount);
                     }
-                    
+
                     if (isListViewEmpty) {
                         scrollHeaderTo(0);
                     } else {

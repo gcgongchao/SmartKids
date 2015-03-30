@@ -1,5 +1,10 @@
 package com.cmbb.smartkids.base;
 
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
@@ -8,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,12 +33,14 @@ import com.cmbb.smartkids.tools.logger.Log;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
+
 /**
  * Created by N.Sun.
  */
 public abstract class BaseActivity extends ActionBarActivity implements View
         .OnClickListener,
-        DialogControl, ToastControl{
+        DialogControl, ToastControl {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
     // Toast
@@ -64,6 +72,39 @@ public abstract class BaseActivity extends ActionBarActivity implements View
         initShare();
     }
 
+    protected String getToken() {
+        Log.i(TAG, TAG + " Token = " + Application.token);
+        if (TextUtils.isEmpty(Application.token)) {
+            AccountManager accountManager = AccountManager.get(this);
+            if (accountManager.getAccountsByType(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE).length > 0) {
+                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE, Constants.Auth.AUTHTOKEN_TYPE, new String[0], this, null, null, new AccountManagerCallback<Bundle>() {
+                    @Override
+                    public void run(AccountManagerFuture<Bundle> future) {
+                        try {
+                            String token = future.getResult().getString(AccountManager.KEY_AUTHTOKEN);
+                            if (!TextUtils.isEmpty(token)) {
+                                Application.token = token;
+                                onTokeReceived(token);
+                            }
+                        } catch (OperationCanceledException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (AuthenticatorException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, null);
+            }
+        }
+
+        return Application.token;
+    }
+
+    protected void onTokeReceived(String result) {
+        // Load 数据
+    }
+
     protected void initToolbar() {
         try {
             toolbar = (Toolbar) findViewById(R.id.tl_custom);
@@ -87,7 +128,7 @@ public abstract class BaseActivity extends ActionBarActivity implements View
         registerReceiver(existReceiver, filter);
         // Toast
         toastBroadcast = new ToastBroadcast(this);
-        IntentFilter filter1 = new IntentFilter(Constants.INTENT_ACTION_Toast);
+        IntentFilter filter1 = new IntentFilter(Constants.INTENT_ACTION_TOAST);
         registerReceiver(toastBroadcast, filter1);
 
     }
@@ -281,9 +322,6 @@ public abstract class BaseActivity extends ActionBarActivity implements View
             }
         }
     }
-
-
-
 
     protected void recycleBitmap(ImageView view) {
         if (view == null)

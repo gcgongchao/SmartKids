@@ -2,6 +2,7 @@ package com.cmbb.smartkids.network.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,14 +23,12 @@ public class Context {
     @JsonProperty("token")
     private String token;
     @JsonProperty("HomeSameAge")
-    private HomeSameAge[] HomeSameAge;
+    private com.cmbb.smartkids.network.model.HomeSameAge HomeSameAge;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
-     * @return
-     * The presentation
+     * @return The presentation
      */
     @JsonProperty("presentation")
     public String getPresentation() {
@@ -37,9 +36,7 @@ public class Context {
     }
 
     /**
-     *
-     * @param presentation
-     * The presentation
+     * @param presentation The presentation
      */
     @JsonProperty("presentation")
     public void setPresentation(String presentation) {
@@ -47,9 +44,7 @@ public class Context {
     }
 
     /**
-     *
-     * @return
-     * The token
+     * @return The token
      */
     @JsonProperty("token")
     public String getToken() {
@@ -57,9 +52,7 @@ public class Context {
     }
 
     /**
-     *
-     * @param token
-     * The token
+     * @param token The token
      */
     @JsonProperty("token")
     public void setToken(String token) {
@@ -67,22 +60,18 @@ public class Context {
     }
 
     /**
-     *
-     * @return
-     * The HomeSameAge
+     * @return The HomeSameAge
      */
     @JsonProperty("HomeSameAge")
-    public HomeSameAge[] getHomeSameAge() {
+    public com.cmbb.smartkids.network.model.HomeSameAge getHomeSameAge() {
         return HomeSameAge;
     }
 
     /**
-     *
-     * @param HomeSameAge
-     * The HomeSameAge
+     * @param HomeSameAge The HomeSameAge
      */
     @JsonProperty("HomeSameAge")
-    public void setHomeSameAge(HomeSameAge[] HomeSameAge) {
+    public void setHomeSameAge(com.cmbb.smartkids.network.model.HomeSameAge HomeSameAge) {
         this.HomeSameAge = HomeSameAge;
     }
 

@@ -115,7 +115,7 @@ public class RegisterActivity_Two extends BaseActivity {
                         super.onSuccess(data);
                         if ("1".equals(data.getCode())) {
                             // showToast
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, "注册成功");
                             sendBroadcast(intent);
@@ -126,7 +126,7 @@ public class RegisterActivity_Two extends BaseActivity {
                                     HomeActivity.class);
                             startActivity(intent1);
                         } else {
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
                             sendBroadcast(intent);

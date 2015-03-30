@@ -46,42 +46,12 @@ public class SplashActivity extends BaseActivity {
     protected void init() {
         initView();
         initTask();
-        getAsyncToken();
+        getToken();
     }
 
-    public void getAsyncToken() {
-        final String _token = "";
-        if (TextUtils.isEmpty(Application.token)) {
-            AccountManager accountManager = AccountManager.get(this);
-            if (accountManager.getAccountsByType(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE).length > 0) {
-                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE, Constants.Auth.AUTHTOKEN_TYPE, new String[0], this, null, null, new AccountManagerCallback<Bundle>() {
-                    @Override
-                    public void run(AccountManagerFuture<Bundle> future) {
-                        try {
-                            String token = future.getResult().getString(AccountManager.KEY_AUTHTOKEN);
-                            Log.i(TAG, "result = " + token);
-                            Application.token = token;
-                            onTokeReceived();
-                        } catch (OperationCanceledException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (AuthenticatorException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, null);
-            }
-        }
-    }
-
-    private void onTokeReceived() {
-        // Load 数据
-    }
-
-    // 初始化 3秒加载数据
-    private void loadData(String token) {
-
+    @Override
+    protected void onTokeReceived(String result) {
+        super.onTokeReceived(result);
     }
 
     private void initTask() {

@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import com.cmbb.smartkids.Application;
 import com.cmbb.smartkids.R;
+import com.cmbb.smartkids.activities.module.ChatModuleActivity;
 import com.cmbb.smartkids.base.BaseActivity;
 import com.cmbb.smartkids.base.BaseFragment;
 import com.cmbb.smartkids.base.Constants;
@@ -31,6 +32,7 @@ import com.cmbb.smartkids.broadcast.ToastBroadcast;
 import com.cmbb.smartkids.db.SmartKidContract;
 import com.cmbb.smartkids.network.OkHttp;
 import com.cmbb.smartkids.network.ResponseActivityCallback;
+import com.cmbb.smartkids.network.model.ResponseListModel;
 import com.cmbb.smartkids.network.model.ResponseModel;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.squareup.okhttp.Request;
@@ -76,45 +78,52 @@ public class FragmentHomeSameAge extends BaseFragment implements AdapterView.OnI
     private void attemptRefresh() {
         showWaitDialog("数据加载中...");
         Map<String, String> body = new HashMap<>();
-        body.put("areaType","AGEBREAKET");
-        body.put("token", Application.token);
+        body.put("areaType", "AGEBREAKET");
+        body.put("token", getToken());
         OkHttp.asyncPost(Constants.Home.AREATYPEPLATE_URL, body,
-                new ResponseActivityCallback<ResponseModel>(((BaseActivity) getActivity()),
-                        ResponseModel.class) {
+                new ResponseActivityCallback<ResponseListModel>(((BaseActivity) getActivity()),
+                        ResponseListModel.class) {
                     @Override
                     public void onFailure(Request request, IOException e) {
                         super.onFailure(request, e);
                     }
 
                     @Override
-                    public void onSuccess(ResponseModel data) {
+                    public void onSuccess(ResponseListModel data) {
                         super.onSuccess(data);
                         if ("1".equals(data.getCode().trim())) {
                             ArrayList<ContentProviderOperation> batch = new ArrayList<ContentProviderOperation>();
-                            for (int i = 0; i < data.getContext().getHomeSameAge().length; i++) {
+                            if (data.getContext().size() > 0) {
+                                batch.add(ContentProviderOperation.newDelete(SmartKidContract
+                                        .HomeSameAge.TABLE_CONTENT_URI).withSelection(" 1 =" +
+                                        " 1", null).build());
+                            }
+
+                            for (int i = 0; i < data.getContext().size(); i++) {
                                 batch.add(ContentProviderOperation.newInsert(SmartKidContract
                                         .HomeSameAge.TABLE_CONTENT_URI)
-                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_TITLE, data.getContext().getHomeSameAge()[i].getTitle())
-                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_BIGIMG, data.getContext().getHomeSameAge()[i].getBigImg())
-                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_BIGIMGHEIGHT, data.getContext().getHomeSameAge()[i].getBigImgHeight())
+                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_TITLE,
+                                                data.getContext().get(i).getTitle())
+                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_BIGIMG, data.getContext().get(i).getBigImg())
+                                        .withValue(SmartKidContract.HomeSameAge.COLUMN_BIGIMGHEIGHT, data.getContext().get(i).getBigImgHeight())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_BIGIMGWIDTH,
-                                                data.getContext().getHomeSameAge()[i].getBigImgWidth())
+                                                data.getContext().get(i).getBigImgWidth())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_CONNECTOR,
-                                                data.getContext().getHomeSameAge()[i].getConnector())
+                                                data.getContext().get(i).getConnector())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_CONTEXT,
-                                                data.getContext().getHomeSameAge()[i].getContext())
+                                                data.getContext().get(i).getContext())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_SMALLIMG,
-                                                data.getContext().getHomeSameAge()[i].getSmallImg())
+                                                data.getContext().get(i).getSmallImg())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_SMALLIMGHEIGHT,
-                                                data.getContext().getHomeSameAge()[i].getSmallImgHeight())
+                                                data.getContext().get(i).getSmallImgHeight())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_SMALLIMGWIDTH,
-                                                data.getContext().getHomeSameAge()[i].getSmallImgWidth())
+                                                data.getContext().get(i).getSmallImgWidth())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_COUNT,
-                                                data.getContext().getHomeSameAge()[i].getCount())
+                                                data.getContext().get(i).getCount())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_TYPE,
-                                                data.getContext().getHomeSameAge()[i].getType())
+                                                data.getContext().get(i).getType())
                                         .withValue(SmartKidContract.HomeSameAge.COLUMN_ID,
-                                                data.getContext().getHomeSameAge()[i].getId())
+                                                data.getContext().get(i).getId())
                                         .build());
                             }
 
@@ -130,9 +139,9 @@ public class FragmentHomeSameAge extends BaseFragment implements AdapterView.OnI
                             }
 
                         } else {
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
-                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
+                            intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, "加载失败");
                             getActivity().sendBroadcast(intent);
                         }
                     }
@@ -159,6 +168,9 @@ public class FragmentHomeSameAge extends BaseFragment implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent(getActivity(), ChatModuleActivity.class);
+        startActivity(intent);
 
     }
 

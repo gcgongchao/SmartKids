@@ -1,20 +1,30 @@
 package com.cmbb.smartkids.base;
 
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.cmbb.smartkids.Application;
 import com.cmbb.smartkids.R;
 import com.cmbb.smartkids.base.ui.DialogControl;
 import com.cmbb.smartkids.base.ui.ToastControl;
 import com.cmbb.smartkids.base.ui.WaitDialog;
+import com.cmbb.smartkids.tools.logger.Log;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
+
 /**
- * Created by Sen on 2015/3/6.
+ * Created by N.Sun
  */
-public class BaseFragment extends Fragment implements View.OnClickListener{
+public class BaseFragment extends Fragment implements View.OnClickListener {
 
     protected static String TAG;
 
@@ -22,6 +32,41 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(false);
+    }
+
+    protected String getToken() {
+        Log.i(TAG, TAG + " Token = " + Application.token);
+        if (TextUtils.isEmpty(Application.token)) {
+            AccountManager accountManager = AccountManager.get(getActivity());
+            if (accountManager.getAccountsByType(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE).length > 0) {
+                accountManager.getAuthTokenByFeatures(Constants.Auth.SMARTKIDS_ACCOUNT_TYPE,
+                        Constants.Auth.AUTHTOKEN_TYPE, new String[0], getActivity(), null, null,
+                        new AccountManagerCallback<Bundle>() {
+                            @Override
+                            public void run(AccountManagerFuture<Bundle> future) {
+                                try {
+                                    String token = future.getResult().getString(AccountManager.KEY_AUTHTOKEN);
+                                    if (!TextUtils.isEmpty(token)) {
+                                        Application.token = token;
+                                        onTokeReceived(token);
+                                    }
+                                } catch (OperationCanceledException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (AuthenticatorException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, null);
+            }
+        }
+
+        return Application.token;
+    }
+
+    protected void onTokeReceived(String result) {
+        // Load 数据
     }
 
     @Override

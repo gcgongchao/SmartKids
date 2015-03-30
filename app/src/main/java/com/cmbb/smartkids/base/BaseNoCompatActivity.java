@@ -21,6 +21,7 @@ import com.cmbb.smartkids.base.ui.DialogHelper;
 import com.cmbb.smartkids.base.ui.PinterestToast;
 import com.cmbb.smartkids.base.ui.ToastControl;
 import com.cmbb.smartkids.base.ui.WaitDialog;
+import com.cmbb.smartkids.base.ui.header2.FadingActionBarHelper;
 import com.cmbb.smartkids.broadcast.ExitBroadcast;
 import com.cmbb.smartkids.tools.logger.Log;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,6 +34,8 @@ public abstract class BaseNoCompatActivity extends Activity implements View.OnCl
         DialogControl, ToastControl {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
+
+    protected FadingActionBarHelper mFadingActionBarHelper;
     // Toast
     private static String lastToast = "";
     private static long lastToastTime;
@@ -67,12 +70,19 @@ public abstract class BaseNoCompatActivity extends Activity implements View.OnCl
         } catch (NullPointerException e) {
 
         }
+
+        mFadingActionBarHelper = new FadingActionBarHelper(getActionBar(),
+                getResources().getDrawable(R.color.theme_color));
     }
 
     private void initExit() {
         existReceiver = new ExitBroadcast(this);
         IntentFilter filter = new IntentFilter(Constants.INTENT_ACTION_EXIT_APP);
         registerReceiver(existReceiver, filter);
+    }
+
+    public FadingActionBarHelper getFadingActionBarHelper() {
+        return mFadingActionBarHelper;
     }
 
     protected abstract void init(Bundle savedInstanceState);

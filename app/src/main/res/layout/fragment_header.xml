@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="bottom|right|end"
+        android:layout_gravity="bottom|left|end"
         android:layout_marginStart="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
@@ -35,8 +35,27 @@
             android:layout_height="wrap_content"
             android:text="Sub Title"
             style="@style/Header.SubTitleText"/>
-
     </LinearLayout>
+
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:layout_gravity="bottom|right|end"
+        android:gravity="center"
+        android:text="关注"
+        android:background="@drawable/selector_ui_shape_background_pressed_two"
+
+        android:textColor="@drawable/selector_text_color_pressed_white_to_black"
+        android:textSize="@dimen/txt_size_17"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/global_padding">
+
+    </TextView>
+
 
     <View
         android:id="@android:id/title"

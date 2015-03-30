@@ -101,7 +101,7 @@ public class RegisterActivity_One extends BaseActivity {
                         Log.i(TAG, "CODE = " + data.getCode());
                         if ("1".equals(data.getCode().trim())) {
                             // showToast
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, "请查收验证码");
                             sendBroadcast(intent);
@@ -112,7 +112,7 @@ public class RegisterActivity_One extends BaseActivity {
                             intent1.putExtra("phone", phoneNo);
                             startActivity(intent1);
                         } else {
-                            Intent intent = new Intent(Constants.INTENT_ACTION_Toast);
+                            Intent intent = new Intent(Constants.INTENT_ACTION_TOAST);
                             intent.putExtra(ToastBroadcast.ToastFLAG, ToastBroadcast.SHOW_TOAST_PARAM);
                             intent.putExtra(ToastBroadcast.SHOW_TOAST_Message, data.getContext().getPresentation());
                             sendBroadcast(intent);
