@@ -129,6 +129,13 @@
             android:exported="false">
         </provider>
 
+        <provider
+            android:name="com.cmbb.smartkids.provider.ProviderHomeSameAgeList"
+            android:authorities="com.cmbb.smartkids.homesameagelist"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
+
         <activity
             android:name=".account.AuthenticatorActivity"
             android:label="@string/authenticator_aty_label"/>

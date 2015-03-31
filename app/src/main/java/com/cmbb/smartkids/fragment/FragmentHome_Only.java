@@ -143,9 +143,7 @@ public class FragmentHome_Only extends BaseFragment implements LoaderManager.Loa
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         Intent intent = new Intent(getActivity(), XXModelActivity.class);
         getActivity().startActivity(intent);
-
     }
 }

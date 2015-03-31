@@ -1,29 +1,24 @@
 package com.cmbb.smartkids.network.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cmbb.smartkids.db.SmartKidContract;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+/**
+ * Created by N.Sun
+ */
+public class ResponseWithListModel {
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "code",
-        "context"
-})
-public class ResponseListModel {
-
-    // Context是一个数组
+    // Context是包含一个数组
     @JsonProperty("code")
     private String code;
     @JsonProperty("context")
-    private ContextList context;
+    private ArrayList<HomeSameAge> context;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -47,7 +42,7 @@ public class ResponseListModel {
      * @return The context
      */
     @JsonProperty("context")
-    public ContextList getContext() {
+    public ArrayList<HomeSameAge> getContext() {
         return context;
     }
 
@@ -55,7 +50,7 @@ public class ResponseListModel {
      * @param context The context
      */
     @JsonProperty("context")
-    public void setContext(ContextList context) {
+    public void setContext(ArrayList<HomeSameAge> context) {
         this.context = context;
     }
 
@@ -67,14 +62,5 @@ public class ResponseListModel {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
-    }
-
-    @Override
-    public String toString() {
-        return "ResponseListModel{" +
-                "code='" + code + '\'' +
-                ", context=" + context +
-                ", additionalProperties=" + additionalProperties +
-                '}';
     }
 }

@@ -14,6 +14,8 @@ import com.cmbb.smartkids.base.ui.header2.FadingActionBarHelper;
 public class ChatModuleActivity extends BaseNoCompatActivity {
     private static final String TAG = ChatModuleActivity.class.getSimpleName();
 
+    private FadingActionBarHelper mFadingActionBarHelper;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_module_chat;
@@ -26,10 +28,20 @@ public class ChatModuleActivity extends BaseNoCompatActivity {
                     .add(R.id.container, new ListViewFragment())
                     .commit();
         }
+
     }
 
     @Override
     protected void init() {
+        initFadingBar();
+    }
 
+    private void initFadingBar() {
+        mFadingActionBarHelper = new FadingActionBarHelper(getActionBar(),
+                getResources().getDrawable(R.color.theme_color));
+    }
+
+    public FadingActionBarHelper getFadingActionBarHelper() {
+        return mFadingActionBarHelper;
     }
 }

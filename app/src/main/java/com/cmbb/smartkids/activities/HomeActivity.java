@@ -30,6 +30,7 @@ import com.cmbb.smartkids.fragment.FragmentActive;
 import com.cmbb.smartkids.fragment.FragmentDoc;
 import com.cmbb.smartkids.fragment.FragmentHome;
 import com.cmbb.smartkids.fragment.FragmentHome2;
+import com.cmbb.smartkids.fragment.FragmentHome3_NoSliding;
 import com.cmbb.smartkids.fragment.FragmentHome_Only;
 import com.cmbb.smartkids.fragment.FragmentTools;
 import com.cmbb.smartkids.tools.logger.Log;
@@ -57,6 +58,7 @@ public class HomeActivity extends BaseActivity {
     ListView lv_user_item;
 
     FragmentHome fragmentHome = new FragmentHome();
+    FragmentHome3_NoSliding fragmentHome3_noSliding = new FragmentHome3_NoSliding();
     FragmentActive fragmentActive = new FragmentActive();
     FragmentDoc fragmentDoc = new FragmentDoc();
     FragmentTools fragmentTools = new FragmentTools();
@@ -74,7 +76,7 @@ public class HomeActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container,
-                    fragmentHome).commit();
+                    fragmentHome3_noSliding).commit();
         }
     }
 
@@ -171,7 +173,7 @@ public class HomeActivity extends BaseActivity {
                 btn_doc.setSelected(false);
                 btn_tools.setSelected(false);
                 getSupportFragmentManager().beginTransaction().replace(R.id.container,
-                        fragmentHome).commit();
+                        fragmentHome3_noSliding).commit();
                 break;
             case R.id.btn_active:
                 //设置焦点

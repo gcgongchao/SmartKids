@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="220dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <com.cmbb.smartkids.base.ui.autoscroll.AutoScrollViewPager
+            android:id="@+id/scroll_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:persistentDrawingCache="animation"/>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/tab_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:padding="5dip"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@android:id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:actionBarSize"
+        android:background="@drawable/header_ab_shadow"/>
+
+</FrameLayout>

@@ -180,4 +180,77 @@ public final class SmartKidContract {
         public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     }
+
+    //同龄
+    public final static class HomeSameAgeList implements BaseColumns {
+
+        private HomeSameAgeList() {
+
+        }
+
+        // scheme
+        public static final String SCHEME = "content";
+
+        // Authority
+        public static final String AUTHORITY = "com.cmbb.smartkids.homesameagelist";
+
+        // content uri
+        public static final Uri CONTENT_URI = Uri.parse(SCHEME + "://" + AUTHORITY);
+
+        // multiple rows
+        public static final String MIME_TYPE_ROWS = "vnd.android.cursor.dir/vnd.com.cmbb" +
+                ".smartkids.homesameagelist";
+
+        // single row
+        public static final String MIME_TYPE_SINGLE_ROWS = "vnd.android.cursor.item/vnd.com.cmbb" +
+                ".smartkids.homesameagelist";
+
+        // primary key column name
+        public static final String ROW_ID = BaseColumns._ID;
+
+        // table name
+        public static final String TABLE_NAME = "HomeSameAgeList";
+
+        // table content URI
+        public static final Uri TABLE_CONTENT_URI = Uri.withAppendedPath(CONTENT_URI, TABLE_NAME);
+
+        //Columns
+        public static final String COLUMN_ATTENT = "attent";
+        public static final String COLUMN_BIGIMG = "bigImg";
+        public static final String COLUMN_CONTEXT = "context";
+        public static final String COLUMN_CREAM = "cream";
+        public static final String COLUMN_DATE = "date";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_LOGINTIMES = "loginTimes";
+        public static final String COLUMN_NIKE = "nike";
+        public static final String COLUMN_PLATENAME = "plateName";
+        public static final String COLUMN_RELPYS = "relpys";
+        public static final String COLUMN_SMALLIMG = "smallImg";
+        public static final String COLUMN_SMALLIMGHEIGHT = "smallImgHeight";
+        public static final String COLUMN_SMALLIMGWIDTH = "smallImgWidth";
+        public static final String COLUMN_STICK = "stick";
+        public static final String COLUMN_STORE = "store";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_TYPE = "type";
+        public static final String COLUMN_USERID = "userId";
+        public static final String COLUMN_USERSMALLHEADIMG = "userSmallHeadImg";
+
+        // create table
+
+        public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID +
+                " INTEGER PRIMARY KEY," +
+                COLUMN_ATTENT+INT_TYPE+COLUMN_BIGIMG+TEXT_TYPE+COLUMN_CONTEXT+TEXT_TYPE+
+                COLUMN_CREAM+INT_TYPE+COLUMN_DATE+TEXT_TYPE+COLUMN_ID+INT_TYPE+
+                COLUMN_LOGINTIMES+INT_TYPE+COLUMN_NIKE+TEXT_TYPE+COLUMN_PLATENAME+TEXT_TYPE+
+                COLUMN_RELPYS+INT_TYPE+COLUMN_SMALLIMG+TEXT_TYPE+COLUMN_SMALLIMGHEIGHT+INT_TYPE+
+                COLUMN_SMALLIMGWIDTH+INT_TYPE+COLUMN_STICK+INT_TYPE+COLUMN_STORE+INT_TYPE+
+                COLUMN_TITLE+TEXT_TYPE+COLUMN_TYPE+TEXT_TYPE+COLUMN_USERID+INT_TYPE+COLUMN_USERSMALLHEADIMG
+                + " TEXT"
+                + ");";
+
+        // delete table
+        public static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    }
+
 }
